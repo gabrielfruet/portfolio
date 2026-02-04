@@ -6,6 +6,11 @@ tags: ["deep-learning", "object-detection", "loss-function"]
 ---
 
 import Figure from '../../components/Figure.astro';
+import f1Large from '../../assets/images/experiments/object_detection/F1.large.jpg';
+import l1LossLandscape from '../../assets/images/experiments/object_detection/l1_loss_landscape.png';
+import iouLossLandscape from '../../assets/images/experiments/object_detection/iou_loss_landscape.png';
+import ciouLossLandscape from '../../assets/images/experiments/object_detection/ciou_loss_landscape.png';
+import optimizationGif from '../../assets/images/experiments/object_detection/l1_vs_ciou_aspect_ratio.gif';
 
 # Why do we need IoU based loss functions?
 
@@ -33,7 +38,7 @@ If we think of our model as a ball in the loss landscape, we want to move it to 
 
 If we release the ball, it will roll down to the a minimum, local or global. That's how optimizers works (e.g. SGD, Adam, etc.) in very simple terms.
 
-<Figure src="../src/assets/images/experiments/object_detection/F1.large.jpg" caption="Figure 1: Loss Landscape" className="w-1/2 mx-auto" source="https://science.sciencemag.org/content/360/6388/478/tab-figures-data" />
+<Figure src={f1Large} caption="Figure 1: Loss Landscape" className="w-1/2 mx-auto" source="https://science.sciencemag.org/content/360/6388/478/tab-figures-data" />
 
 # L1 Loss
 
@@ -41,7 +46,7 @@ The simplest loss used for object detection is L1 loss for example. Where we are
 only minimizing the difference between the predicted and the ground truth
 bounding box in XY terms, not WH (This is because we want to visualize in a 2D plane.)
 
-<Figure src="../src/assets/images/experiments/object_detection/l1_loss_landscape.png" caption="Figure 2: L1 Loss Landscape" className="w-1/2 mx-auto" />
+<Figure src={l1LossLandscape} caption="Figure 2: L1 Loss Landscape" className="w-1/2 mx-auto" />
 
 As we can see, the loss landscape of L1 loss is very smooth, and the gradient is
 always pointing to the minimum. But the loss is very "flat", so the ball will
@@ -52,7 +57,7 @@ roll down very consistently to find the minimum.
 The IoU loss is defined as $1 - IoU$. It is not very used, but it is a good
 starting point to understand the problem.
 
-<Figure src="../src/assets/images/experiments/object_detection/iou_loss_landscape.png" caption="Figure 3: IoU Loss Landscape" className="w-1/2 mx-auto" />
+<Figure src={iouLossLandscape} caption="Figure 3: IoU Loss Landscape" className="w-1/2 mx-auto" />
 
 This loss is not used in practice because it is not smooth, and the gradient is
 not always pointing to the minimum.
@@ -106,10 +111,10 @@ Where:
 
 The CIoU loss landscape is very smooth, and the gradient is always pointing to the minimum.
 
-<Figure src="../src/assets/images/experiments/object_detection/ciou_loss_landscape.png" caption="Figure 4: CIoU Loss Landscape" className="w-1/2 mx-auto" />
+<Figure src={ciouLossLandscape} caption="Figure 4: CIoU Loss Landscape" className="w-1/2 mx-auto" />
 
 # Optimization Process
 
 Here is a visualization of how the bounding box regression works during the optimization process.
 
-<Figure src="../src/assets/images/experiments/object_detection/l1_vs_ciou_aspect_ratio.gif" caption="Figure 5: Bounding Box Optimization" className="w-1/2 mx-auto" />
+<Figure src={optimizationGif} caption="Figure 5: Bounding Box Optimization" className="w-1/2 mx-auto" />
