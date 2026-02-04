@@ -9,7 +9,7 @@ import remarkMath from 'remark-math';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://gabrielfruet.github.io',
-  base: '/website',
+  base: '/portfolio',
   vite: {
     plugins: [tailwindcss()]
   },

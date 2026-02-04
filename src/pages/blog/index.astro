@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Header from '../../components/Header.astro';
+import { getCollection } from "astro:content";
+import Header from "../../components/Header.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
@@ -13,30 +13,38 @@ const posts = (await getCollection('blog')).sort(
 
   <main>
     <h1 class="font-mono text-2xl font-bold mb-8 text-white">Blog</h1>
-    
+
     <ul class="space-y-8">
-      {posts.map((post) => (
-        <li class="border-b border-neutral-800 pb-8 last:border-0">
-          <a href={`/blog/${post.slug}`} class="group block">
-            <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-              <h2 class="text-lg font-medium text-white group-hover:text-blue-400 transition-colors">
-                {post.data.title}
-              </h2>
-              <time datetime={post.data.pubDate.toISOString()} class="text-sm font-mono text-neutral-500 whitespace-nowrap mt-1 sm:mt-0">
-                {post.data.pubDate.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </time>
-            </div>
-            
-            <p class="text-neutral-400 text-sm leading-relaxed max-w-2xl">
-              {post.data.description}
-            </p>
-          </a>
-        </li>
-      ))}
+      {
+        posts.map((post) => (
+          <li class="border-b border-neutral-800 pb-8 last:border-0">
+            <a
+              href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
+              class="group block"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                <h2 class="text-lg font-medium text-white group-hover:text-blue-400 transition-colors">
+                  {post.data.title}
+                </h2>
+                <time
+                  datetime={post.data.pubDate.toISOString()}
+                  class="text-sm font-mono text-neutral-500 whitespace-nowrap mt-1 sm:mt-0"
+                >
+                  {post.data.pubDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
+              </div>
+
+              <p class="text-neutral-400 text-sm leading-relaxed max-w-2xl">
+                {post.data.description}
+              </p>
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </main>
 </BaseLayout>
