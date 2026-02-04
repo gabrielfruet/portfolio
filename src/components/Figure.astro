@@ -29,10 +29,10 @@ const { src, alt, caption, className = "", source = "" } = Astro.props;
             />
         )
     }
-    <div class="flex justify-between">
+    <div class={`flex ${source ? "justify-between" : "justify-center"}`}>
         {
             caption && (
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 font-mono">
+                <figcaption class="text-center text-sm text-neutral-400 mt-3">
                     {caption}
                 </figcaption>
             )

@@ -10,7 +10,9 @@ import f1Large from '../../assets/images/experiments/object_detection/F1.large.j
 import l1LossLandscape from '../../assets/images/experiments/object_detection/l1_loss_landscape.png';
 import iouLossLandscape from '../../assets/images/experiments/object_detection/iou_loss_landscape.png';
 import ciouLossLandscape from '../../assets/images/experiments/object_detection/ciou_loss_landscape.png';
-import optimizationGif from '../../assets/images/experiments/object_detection/l1_vs_ciou_aspect_ratio.gif';
+import optimizationGif from '../../assets/images/experiments/object_detection/fcos_optimization.gif';
+import l1Correlation from '../../assets/images/experiments/object_detection/l1_correlation.png';
+import ciouCorrelation from '../../assets/images/experiments/object_detection/ciou_correlation.png';
 
 # Why do we need IoU based loss functions?
 
@@ -113,8 +115,22 @@ The CIoU loss landscape is very smooth, and the gradient is always pointing to t
 
 <Figure src={ciouLossLandscape} caption="Figure 4: CIoU Loss Landscape" className="w-1/2 mx-auto" />
 
-# Optimization Process
+# Metric Correlation
 
-Here is a visualization of how the bounding box regression works during the optimization process.
+We talked about much of the theorical stuff, but let's see how it works in practice.
 
-<Figure src={optimizationGif} caption="Figure 5: Bounding Box Optimization" className="w-1/2 mx-auto" />
+In the end, we want to optimize some metric, that in our case is IoU. 
+
+So we expect that lower loss values lead to higher IoU values. Let's check that.
+
+<div className="grid grid-cols-2 gap-6">
+<Figure src={l1Correlation} caption="Figure 5: L1 Loss vs IoU Correlation" className="w-full mx-auto" />
+
+<Figure src={ciouCorrelation} caption="Figure 6: CIoU Loss vs IoU Correlation" className="w-full mx-auto" />
+</div>
+
+We can see that although both losses have negative correlation with IoU, CIoU
+loss has a much better correlation with IoU than L1 loss.
+
+For example, in **L1 loss**, when the IoU = 0.4, we can see that the loss can ranges from **15 to 30**. In contrast,
+**CIoU loss** ranges from **0.4 to 0.65**.
