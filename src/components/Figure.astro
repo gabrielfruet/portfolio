@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    src: string | ImageMetadata;
+    alt: string;
+    caption?: string;
+    className?: string;
+    source?: string;
+}
+
+const { src, alt, caption, className = "", source = "" } = Astro.props;
+---
+
+<figure class={`my-8 ${className}`}>
+    {
+        typeof src === "string" ? (
+            <img
+                src={src}
+                alt={alt || caption || ""}
+                class="rounded-md w-full h-auto border border-neutral-800 zoomable cursor-zoom-in"
+            />
+        ) : (
+            <Image
+                src={src}
+                alt={alt || caption || ""}
+                class="rounded-md w-full h-auto border border-neutral-800 zoomable cursor-zoom-in"
+            />
+        )
+    }
+    <div class="flex justify-between">
+        {
+            caption && (
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 font-mono">
+                    {caption}
+                </figcaption>
+            )
+        }
+        {
+            source && (
+                <a
+                    href={source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-center text-sm text-neutral-500 mt-3 font-mono"
+                >
+                    Source
+                </a>
+            )
+        }
+    </div>
+</figure>
+
+<script>
+    import mediumZoom from "medium-zoom";
+
+    mediumZoom(".zoomable", {
+        margin: 24,
+        background: "rgba(0, 0, 0, 0.9)",
+        scrollOffset: 0,
+    });
+</script>

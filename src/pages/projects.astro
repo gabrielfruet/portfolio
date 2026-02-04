@@ -1,0 +1,28 @@
+---
+import Header from "../components/Header.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = [
+  {
+    title: "CUDA Voxelization for PyTorch",
+    description: "A fast voxelization implementation for PyTorch using CUDA.",
+    tech: ["C++", "CUDA", "PyTorch"],
+    link: "https://github.com/gabrielfruet/cuda-voxelization-torch",
+    image:
+      "https://github.com/gabrielfruet/cuda-voxelization-torch/raw/master/assets/cuda-voxelization-vis.png",
+  },
+];
+---
+
+<BaseLayout title="Projects | Gabriel Fruet">
+  <Header />
+
+  <main>
+    <h1 class="font-mono text-2xl font-bold mb-8 text-white">Projects</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+  </main>
+</BaseLayout>

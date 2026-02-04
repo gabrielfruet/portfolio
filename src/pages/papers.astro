@@ -1,0 +1,50 @@
+---
+import Header from "../components/Header.astro";
+import PaperCard from "../components/PaperCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const apisflow_abstract =
+    "ApisFlow is a real-time object-tracking framework for automatically detecting, tracking, classifying and counting the flow of honey bee castes at the hive entrance.";
+
+const papers = [
+    {
+        title: "ApisFlow: a Real-Time Automated Tool to Detect, Classify and Count Honey Bees Castes at the Hive Entrance",
+        authors: [
+            "Gabriel Vasconcelos Fruet",
+            "Isac Gabriel Abrahão Bomfim",
+            "Rafael Capelo Domingues",
+            "Antonio Rafael Braga",
+            "Danielo G. Gomes",
+        ],
+        venue: "WCAMA",
+        year: "2023",
+        link: "https://doi.org/10.5753/wcama.2023.230583",
+        abstract: apisflow_abstract,
+    },
+    {
+        title: "Imagens de Raios X e YOLOv8 para Avaliação Automatizada, Precisa e Não Destrutiva da Qualidade de Sementes Braquiária (Urochloa brizantha)",
+        authors: [
+            "Rafael Capelo Domingues",
+            "Gabriel Vasconcelos Fruet",
+            "Haynna Fernandes Abud",
+            "Danielo G. Gomes",
+        ],
+        venue: "SBIAGRO",
+        year: "2023",
+        link: "https://sol.sbc.org.br/index.php/sbiagro/article/view/26555",
+        abstract: "",
+    },
+];
+---
+
+<BaseLayout title="Papers | Gabriel Fruet">
+    <Header />
+
+    <main>
+        <h1 class="font-mono text-2xl font-bold mb-8 text-white">Papers</h1>
+
+        <div class="flex flex-col">
+            {papers.map((paper) => <PaperCard {...paper} />)}
+        </div>
+    </main>
+</BaseLayout>

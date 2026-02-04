@@ -1,0 +1,43 @@
+---
+const links = [
+  { text: "Home", href: "/" },
+  { text: "Blog", href: "/blog" },
+  { text: "Projects", href: "/projects" },
+  { text: "Papers", href: "/papers" },
+];
+---
+
+<header
+  class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-16 font-mono text-sm"
+>
+  <nav class="flex gap-6">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="text-neutral-400 hover:text-white transition-colors duration-200"
+        >
+          {link.text}
+        </a>
+      ))
+    }
+  </nav>
+  <div class="flex gap-4">
+    <a
+      href="https://github.com/gabrielfruet"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-neutral-400 hover:text-white transition-colors duration-200"
+    >
+      GitHub ↗
+    </a>
+    <a
+      href="https://www.linkedin.com/in/gabriel-fruet/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-neutral-400 hover:text-white transition-colors duration-200"
+    >
+      LinkedIn ↗
+    </a>
+  </div>
+</header>

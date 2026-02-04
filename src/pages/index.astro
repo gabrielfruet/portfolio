@@ -1,0 +1,26 @@
+---
+import Header from "../components/Header.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Gabriel Fruet | Computer Vision Engineer">
+  <Header />
+
+  <main class="flex-1 flex flex-col justify-center max-w-2xl">
+    <h1
+      class="font-mono text-3xl md:text-4xl font-bold mb-8 tracking-tight text-white"
+    >
+      Hi, I'm Gabriel.
+    </h1>
+
+    <div class="prose prose-invert prose-lg text-neutral-300">
+      <p class="mb-6">
+        I am a Computer Vision Engineer working on LiDAR perception and
+        autonomous systems. Also working with computer vision and machine
+        learning for agricultural and medical applications.
+      </p>
+
+      <p class="mb-6"></p>
+    </div>
+  </main>
+</BaseLayout>
