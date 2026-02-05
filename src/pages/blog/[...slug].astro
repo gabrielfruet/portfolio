@@ -78,6 +78,7 @@ const { Content } = await post.render();
       headline: post.data.title,
       description: post.data.description,
       datePublished: post.data.pubDate.toISOString(),
+      dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
       author: {
         "@type": "Person",
         name: "Gabriel Fruet",
