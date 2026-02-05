@@ -17,7 +17,11 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  articleDate={post.data.pubDate}
+>
   <Header />
 
   <main class="max-w-2xl">
@@ -65,4 +69,21 @@ const { Content } = await post.render();
       </div>
     </article>
   </main>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.data.title,
+      description: post.data.description,
+      datePublished: post.data.pubDate.toISOString(),
+      author: {
+        "@type": "Person",
+        name: "Gabriel Fruet",
+        url: Astro.site,
+      },
+      url: new URL(Astro.url.pathname, Astro.site).href,
+    })}
+  />
 </BaseLayout>
