@@ -1,0 +1,138 @@
+---
+title: "Why IoU Loss Beats L1 in Object Detection"
+description: "Why IoU based loss functions perform better than L1 loss in object detection."
+pubDate: "2026-02-02"
+tags: ["deep-learning", "object-detection", "loss-function"]
+---
+
+import Figure from '../../components/Figure.astro';
+import f1Large from '../../assets/images/experiments/object_detection/F1.large.jpg';
+import l1LossLandscape from '../../assets/images/experiments/object_detection/l1_loss_landscape.png';
+import iouLossLandscape from '../../assets/images/experiments/object_detection/iou_loss_landscape.png';
+import ciouLossLandscape from '../../assets/images/experiments/object_detection/ciou_loss_landscape.png';
+import optimizationGif from '../../assets/images/experiments/object_detection/fcos_optimization.gif';
+import l1Correlation from '../../assets/images/experiments/object_detection/l1_correlation.png';
+import ciouCorrelation from '../../assets/images/experiments/object_detection/ciou_correlation.png';
+
+# Why do we need IoU based loss functions?
+
+A question that may arise when entering the world of object detection is:
+Why do IoU-based loss functions perform better than L1 loss?
+
+Intuitively, we generally think of object detection as purely a regression problem. So, if we minimize the difference (e.g., L1 or L2 loss) between the predicted and the ground truth bounding boxes, we should get a good model.
+
+This is partially true, but not entirely. Since we evaluate the model using
+metrics such as mAP, we want to minimize the difference between the predicted
+and the ground truth bounding box in terms of IoU. In general, the L1 loss
+**does** that, but not directly.
+
+# Loss landscape
+
+When training a model, we aim to minimize the loss function. We can visualize our model as a "point" in the loss landscape, which we want to move to the global minimum.
+This movement is entirely dependent on how the gradient behaves in the neighborhood of the current point.
+
+Simply put, the shape of the loss landscape determines how the model learns.
+
+## The ball example
+
+If we think of our model as a ball in the loss landscape, we want to move it to the minimum. And let's imagine we have gravity there.
+
+If we release the ball, it will roll down to a minimum, local or global. That's how optimizers work (e.g., SGD, Adam, etc.) in very simple terms.
+
+<Figure src={f1Large} caption="Figure 1: Loss Landscape" className="w-1/2 mx-auto" source="https://science.sciencemag.org/content/360/6388/478/tab-figures-data" />
+
+# L1 Loss
+
+One of the simplest loss functions used for object detection is the L1 loss. Here, we only minimize
+the difference between the predicted and ground truth bounding boxes in terms of XY coordinates,
+not width and height (WH), to allow for visualization on a 2D plane.
+
+<Figure src={l1LossLandscape} caption="Figure 2: L1 Loss Landscape" className="w-1/2 mx-auto" />
+
+As we can see, the L1 loss landscape is very smooth, with the gradient always pointing
+toward the minimum. However, the loss is quite "flat", so the ball will
+roll down very consistently to find the minimum.
+
+# IoU Loss
+
+The IoU loss is defined as $1 - IoU$. It is not widely used, but serves as a good
+starting point for understanding the problem.
+
+<Figure src={iouLossLandscape} caption="Figure 3: IoU Loss Landscape" className="w-1/2 mx-auto" />
+
+This loss is rarely used in practice because the landscape is not smooth, and the gradient does
+not always point toward the minimum.
+
+Looking at the borders, we see a flat surface that provides no gradient. Gradients only appear
+in the center, where the ground truth and predicted boxes overlap. This poses a problem: if the model
+is far from the ground truth, there is no gradient to guide it toward the minimum.
+
+> The IoU of non-overlapping boxes is 0.
+
+So we need something that says 
+
+> Hey, I know that you are not overlapping the ground truth, but go in this direction, and you will get there.
+
+And that's what GIoU, DIoU, and CIoU loss functions do.
+
+# Complete IoU Loss
+
+This was initially proposed in the paper [Enhancing Geometric Factors in Model Learning and Inference for Object Detection and Instance Segmentation](https://arxiv.org/pdf/2005.03572).
+
+It is defined as: 
+
+$$
+L   _{CIoU} = S(b, b^{gt}) + D(b, b^{gt}) + V(b, b^{gt})
+$$
+$$
+S(b, b^{gt}) = 1 - IoU(b, b^{gt})
+$$
+$$
+D(b, b^{gt}) = \frac{\rho^2(b, b^{gt})}{c^2}
+$$
+$$
+V(b, b^{gt}) = \frac{4}{\pi^2} (\arctan \frac{w^{gt}}{h^{gt}} - \arctan \frac{w}{h})^2
+$$
+$$
+\alpha = 
+\begin{cases}
+  \frac{V}{1 - IoU + V} & \text{if $IoU \geq 0.5$} \\
+  0 & \text{if $IoU < 0.5$}
+\end{cases}
+$$
+
+Where:
+
+- $IoU$ is the Intersection over Union.
+- $\rho^2(b, b^{gt})$ is the squared Euclidean distance between the center points of the predicted and ground truth boxes.
+- $c$ is the diagonal length of the smallest enclosing box that contains both the predicted and ground truth boxes.
+- $\alpha$ is a weighting factor.
+- $V$ is a parameter that measures the consistency of the aspect ratios.
+
+The CIoU loss landscape is very smooth, and the gradient always points toward the minimum.
+
+<Figure src={ciouLossLandscape} caption="Figure 4: CIoU Loss Landscape" className="w-1/2 mx-auto" />
+
+# Metric Correlation
+
+We have covered much of the theoretical background; now, let's see how it works in practice.
+
+In the end, we want to optimize a metric, which in our case is IoU. So we expect
+that lower loss values lead to higher IoU values. Let's verify this.
+
+<div className="grid grid-cols-2 gap-6">
+<Figure src={l1Correlation} caption="Figure 5: L1 Loss vs IoU Correlation" className="w-full mx-auto" />
+
+<Figure src={ciouCorrelation} caption="Figure 6: CIoU Loss vs IoU Correlation" className="w-full mx-auto" />
+</div>
+
+We can observe that although both losses have a negative correlation with IoU, the CIoU
+loss exhibits a much stronger correlation than the L1 loss.
+
+For example, in **L1 loss**, when the **IoU = 0.4**, we can see that the loss ranges from **15 to 30**. In contrast,
+when the **IoU = 0.4**, the **CIoU loss** ranges from **0.4 to 0.65**.
+
+# Conclusion
+
+In conclusion, we can see that IoU-based loss functions perform better than L1 loss in object detection. The loss of IoU 
+is more correlated with the metric we want to optimize, which is IoU.

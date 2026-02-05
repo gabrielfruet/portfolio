@@ -13,6 +13,18 @@ const projects = [
       "https://github.com/gabrielfruet/cuda-voxelization-torch/raw/master/assets/cuda-voxelization-vis.png",
   },
 ];
+
+const contributions = [
+  {
+    title: "PyTorch Ignite",
+    description:
+      "Contributed to PyTorch Ignite, with focus on improving the metrics and logging API.",
+    tech: ["Python", "C++", "CUDA"],
+    link: "https://github.com/pytorch/ignite/pulls?q=is%3Apr+author%3Agabrielfruet+",
+    image:
+      "https://raw.githubusercontent.com/pytorch/ignite/master/assets/logo/ignite_logo.png",
+  },
+];
 ---
 
 <BaseLayout title="Projects | Gabriel Fruet">
@@ -21,8 +33,15 @@ const projects = [
   <main>
     <h1 class="font-mono text-2xl font-bold mb-8 text-white">Projects</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
       {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+
+    <h2 class="font-mono text-xl font-bold mb-8 text-white">
+      Open Source Contributions
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {contributions.map((contribution) => <ProjectCard {...contribution} />)}
     </div>
   </main>
 </BaseLayout>

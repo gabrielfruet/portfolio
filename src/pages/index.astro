@@ -1,6 +1,11 @@
 ---
+import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Gabriel Fruet | Computer Vision Engineer">
@@ -13,14 +18,71 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       Hi, I'm Gabriel.
     </h1>
 
-    <div class="prose prose-invert prose-lg text-neutral-300">
+    <div class="prose prose-invert prose-lg text-neutral-300 mb-12">
       <p class="mb-6">
         I am a Computer Vision Engineer working on LiDAR perception and
         autonomous systems. Also working with computer vision and machine
         learning for agricultural and medical applications.
       </p>
-
-      <p class="mb-6"></p>
     </div>
+    <div class="mb-20">
+      <a
+        href={`${import.meta.env.BASE_URL}/projects`}
+        class="group flex items-center justify-between p-4 rounded-lg border border-neutral-800 hover:border-neutral-600 hover:bg-neutral-900/50 transition-all duration-300"
+      >
+        <div class="flex flex-col">
+          <span class="font-mono text-sm text-white font-medium mb-1"
+            >Projects & Open Source</span
+          >
+          <span class="text-xs text-neutral-400"
+            >View what I've been building and contributing to.</span
+          >
+        </div>
+        <span
+          class="text-neutral-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
+          >→</span
+        >
+      </a>
+    </div>
+
+    <section>
+      <h2 class="font-mono text-xl font-bold mb-6 text-white">Latest Posts</h2>
+      <ul class="space-y-6">
+        {
+          posts.map((post) => (
+            <li class="border-b border-neutral-800 pb-6 last:border-0 last:pb-0">
+              <a
+                href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
+                class="group block"
+              >
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                  <h3 class="text-lg font-medium text-white group-hover:text-blue-400 transition-colors">
+                    {post.data.title}
+                  </h3>
+                  <time
+                    datetime={post.data.pubDate.toISOString()}
+                    class="text-sm font-mono text-neutral-500 whitespace-nowrap mt-1 sm:mt-0"
+                  >
+                    {post.data.pubDate.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-8">
+        <a
+          href={`${import.meta.env.BASE_URL}/blog`}
+          class="text-sm font-mono text-neutral-400 hover:text-white transition-colors border-b border-neutral-800 pb-1"
+        >
+          Read all posts →
+        </a>
+      </div>
+    </section>
   </main>
 </BaseLayout>
