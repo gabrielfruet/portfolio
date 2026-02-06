@@ -1,0 +1,105 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+    headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+// Calculate the minimum depth present to determine top-level headings
+const minDepth = headings.length
+    ? Math.min(...headings.map((h) => h.depth))
+    : 2;
+const toc = headings.filter((h) => h.depth <= minDepth + 1);
+---
+
+{
+    toc.length > 0 && (
+        <nav class="toc my-8">
+            <button
+                class="toc-toggle flex items-center gap-2 text-left cursor-pointer focus:outline-none group text-neutral-400 hover:text-white transition-colors duration-200"
+                aria-expanded="true"
+                aria-controls="toc-content"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="toc-icon transform transition-transform duration-300"
+                >
+                    <polyline points="6 9 12 15 18 9" />
+                </svg>
+                <span class="font-mono text-sm">Table of Contents</span>
+            </button>
+            <div
+                id="toc-content"
+                class="toc-content grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out pl-6"
+            >
+                <div class="overflow-hidden">
+                    <ul class="space-y-2 font-mono text-sm pt-4 border-l border-neutral-800 ml-1.5 pl-4">
+                        {toc.map((heading) => (
+                            <li
+                                class:list={[
+                                    "transition-colors duration-200",
+                                    heading.depth === minDepth
+                                        ? "text-neutral-400 hover:text-white"
+                                        : "text-neutral-500 hover:text-neutral-300 pl-4",
+                                ]}
+                            >
+                                <a
+                                    href={`#${heading.slug}`}
+                                    class="block py-0.5 focus:outline-none focus:text-blue-400"
+                                >
+                                    {heading.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    )
+}
+
+<script>
+    function setupTOC() {
+        const toggles = document.querySelectorAll(".toc-toggle");
+
+        toggles.forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+                const content = toggle.nextElementSibling as HTMLElement;
+                const icon = toggle.querySelector(
+                    ".toc-icon",
+                ) as HTMLElement | null;
+                const isExpanded =
+                    toggle.getAttribute("aria-expanded") === "true";
+
+                // Toggle state
+                toggle.setAttribute("aria-expanded", (!isExpanded).toString());
+
+                // Animate content
+                if (content) {
+                    content.style.gridTemplateRows = isExpanded ? "0fr" : "1fr";
+                }
+
+                // Rotate icon
+                if (icon) {
+                    icon.style.transform = isExpanded
+                        ? "rotate(-90deg)"
+                        : "rotate(0deg)";
+                }
+            });
+        });
+    }
+
+    // Run on invalidation or load (Astro View Transitions handling if present, otherwise explicit call)
+    setupTOC();
+    document.addEventListener("astro:page-load", setupTOC);
+</script>

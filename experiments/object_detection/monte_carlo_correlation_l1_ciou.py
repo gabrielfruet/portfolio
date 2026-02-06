@@ -42,35 +42,44 @@ ious = box_iou(preds, gt).squeeze().numpy()
 corr_l1, _ = pearsonr(l1_losses, ious)
 corr_ciou, _ = pearsonr(ciou_losses, ious)
 
-# --- Visualization ---
-# --- Visualization ---
+plt.style.use("dark_background")
+
+def plot_correlation(x, y, title, xlabel, ylabel, color, output_path):
+    plt.figure(figsize=(8, 7))
+    plt.scatter(x, y, alpha=0.1, s=4, c=color, edgecolors='none') # Increase alpha and size for detail
+    plt.title(title, fontsize=16, color='white', fontweight='bold')
+    plt.xlabel(xlabel, fontsize=12, color='#A3A3A3')
+    plt.ylabel(ylabel, fontsize=12, color='#A3A3A3')
+    plt.grid(True, alpha=0.1, linestyle='--', color='white')
+    
+    # Remove top and right spines
+    plt.gca().spines['top'].set_visible(False)
+    plt.gca().spines['right'].set_visible(False)
+    plt.gca().spines['bottom'].set_color('#333333')
+    plt.gca().spines['left'].set_color('#333333')
+    plt.gca().tick_params(colors='#A3A3A3')
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, facecolor='black', edgecolor='none')
+    print(f"Saved plot to {output_path}")
+    plt.close()
 
 # Plot L1
-plt.figure(figsize=(8, 7))
-plt.scatter(ious, l1_losses, alpha=0.05, s=2, c='#FF3B30') # Clean Red
-plt.title(f"Pearson Correlation: {corr_l1:.3f}", fontsize=14)
-plt.xlabel("IoU")
-plt.ylabel("L1 Loss")
-plt.grid(True, alpha=0.3, linestyle='--')
-plt.tight_layout()
-
-# Save L1
-l1_output_path = "/mnt/arch_home/fruet/dev/website/gabrielfruet/src/assets/images/experiments/object_detection/l1_correlation.png"
-plt.savefig(l1_output_path, dpi=300)
-print(f"Saved L1 plot to {l1_output_path}")
-plt.close()
+plot_correlation(
+    ious, l1_losses, 
+    f"L1 Loss Correlation (R={corr_l1:.3f})", 
+    "IoU (Overlap)", 
+    "L1 Loss", 
+    '#EF4444', # Red-500
+    "/mnt/arch_home/fruet/dev/website/gabrielfruet/src/assets/images/experiments/object_detection/l1_correlation.png"
+)
 
 # Plot CIoU
-plt.figure(figsize=(8, 7))
-plt.scatter(ious, ciou_losses, alpha=0.05, s=2, c='#34C759') # Clean Green
-plt.title(f"Pearson Correlation: {corr_ciou:.3f}", fontsize=14)
-plt.xlabel("IoU")
-plt.ylabel("CIoU Loss")
-plt.grid(True, alpha=0.3, linestyle='--')
-plt.tight_layout()
-
-# Save CIoU
-ciou_output_path = "/mnt/arch_home/fruet/dev/website/gabrielfruet/src/assets/images/experiments/object_detection/ciou_correlation.png"
-plt.savefig(ciou_output_path, dpi=300)
-print(f"Saved CIoU plot to {ciou_output_path}")
-plt.close()
+plot_correlation(
+    ious, ciou_losses, 
+    f"CIoU Loss Correlation (R={corr_ciou:.3f})", 
+    "IoU (Overlap)", 
+    "CIoU Loss", 
+    '#10B981', # Emerald-500
+    "/mnt/arch_home/fruet/dev/website/gabrielfruet/src/assets/images/experiments/object_detection/ciou_correlation.png"
+)

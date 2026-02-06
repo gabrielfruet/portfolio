@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 from torchvision.ops.ciou_loss import complete_box_iou_loss
+from matplotlib import cm 
+
+plt.style.use("dark_background")
 
 def get_iou_loss(pred_box, gt_box):
     """
@@ -106,8 +109,8 @@ def plot_loss_landscape(loss_func, title, ax):
     magnitude_safe = magnitude.copy()
     magnitude_safe[magnitude_safe == 0] = 1.0 
     
-    ax.quiver(X, Y, U_grad/magnitude_safe, V_grad/magnitude_safe, magnitude, 
-              cmap='autumn', scale=20, width=0.005)
+    # ax.quiver(X, Y, U_grad/magnitude_safe, V_grad/magnitude_safe, magnitude, 
+    #           cmap='autumn', scale=20, width=0.005)
 
     # Draw Ground Truth Box
     rect = plt.Rectangle((-0.5, -0.5), 1, 1, linewidth=2, edgecolor='red', facecolor='none', linestyle='--')
@@ -117,7 +120,7 @@ def plot_loss_landscape(loss_func, title, ax):
     ax.set_xlim(-range_val, range_val)
     ax.set_ylim(-range_val, range_val)
 
-def plot_loss_landscape_3d(loss_func, title, ax: plt.Axes):
+def plot_loss_landscape_3d(loss_func, title, ax: plt.Axes, fig: plt.Figure):
     gt_box = torch.tensor([0.0, 0.0, 1.0, 1.0]) # Center at 0,0, size 1x1
 
     # Grid for Predicted Box Center (cx, cy)
@@ -148,13 +151,19 @@ def plot_loss_landscape_3d(loss_func, title, ax: plt.Axes):
             
             Z_loss[i, j] = loss.item()
             # Negative gradient because we want the direction of descent
-            U_grad[i, j] = -pred_box.grad[0].item() 
-            V_grad[i, j] = -pred_box.grad[1].item()
-            W_grad[i, j] = -(U_grad[i, j]**2 + V_grad[i, j]**2)
+            U_grad[i, j] = pred_box.grad[0].item() 
+            V_grad[i, j] = pred_box.grad[1].item()
+            W_grad[i, j] = U_grad[i, j]**2 + V_grad[i, j]**2
 
-    W_grad = np.sqrt(W_grad)
-    ax.plot_surface(X, Y, Z_loss, cmap='plasma', alpha=0.9)
-    ax.quiver(X, Y, Z_loss, U_grad, V_grad, W_grad, color='black', length=0.1)
+    denominator = W_grad.max() - W_grad.min()
+    if denominator == 0:
+        W_grad_minmax = np.full_like(W_grad, 0.5) # Or 0.5 for middle color
+    else:
+        W_grad_minmax = (W_grad - W_grad.min()) / denominator
+    
+    # Use facecolors for surface coloring based on gradient magnitude
+    # its possible to add shadows?
+    plot = ax.plot_surface(X, Y, Z_loss, facecolors=plt.cm.plasma(W_grad_minmax), alpha=0.9, cmap="plasma", shade=True)
     # draw 3d ball at some point
     ax.set_title(title)
     ax.set_xlim(-range_val, range_val)
@@ -162,6 +171,17 @@ def plot_loss_landscape_3d(loss_func, title, ax: plt.Axes):
     ax.set_xlabel("cx")
     ax.set_ylabel("cy")
     ax.set_zlabel("Loss")
+
+    # the plot is too to the left ( the plot_surface)
+    ax.view_init(elev=20, azim=20)
+    
+    # Create a dummy ScalarMappable for the colorbar since we use facecolors customly
+    m = plt.cm.ScalarMappable(cmap=plt.cm.plasma)
+    m.set_array(W_grad_minmax)
+    
+    cb = fig.colorbar(m, ax=ax, label="Gradient", orientation="vertical", ticks=[1, 0], shrink=0.5, location="left", )
+    cb.ax.set_yticklabels(["High", "Low"], fontsize=12)
+    fig.tight_layout()
 
     
 
@@ -172,10 +192,10 @@ fig2, ax2 = plt.subplots(1, figsize=(6, 6), subplot_kw=dict(projection="3d"))
 fig3, ax3 = plt.subplots(1, figsize=(6, 6), subplot_kw=dict(projection="3d"))
 
 # Plot L1
-plot_loss_landscape_3d(get_l1_loss, "L1 Loss Landscape & Gradients", ax1)
+plot_loss_landscape_3d(get_l1_loss, "L1 Loss Landscape & Gradients", ax1, fig1)
 # Plot IoU
-plot_loss_landscape_3d(get_iou_loss, "IoU Loss Landscape & Gradients", ax2)
-plot_loss_landscape_3d(get_ciou_loss, "Complete IoU Loss Landscape & Gradients", ax3)
+plot_loss_landscape_3d(get_iou_loss, "IoU Loss Landscape & Gradients", ax2, fig2)
+plot_loss_landscape_3d(get_ciou_loss, "Complete IoU Loss Landscape & Gradients", ax3, fig3)
 
 # plt.show()
 
