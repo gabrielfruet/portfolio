@@ -16,46 +16,45 @@ const toc = headings.filter((h) => h.depth <= minDepth + 1);
 
 {
     toc.length > 0 && (
-        <nav class="toc my-8">
+        <nav class="toc my-8 border border-neutral-800 rounded-lg overflow-hidden bg-[#111] shadow-sm">
             <button
-                class="toc-toggle flex items-center gap-2 text-left cursor-pointer focus:outline-none group text-neutral-400 hover:text-white transition-colors duration-200"
+                class="toc-toggle w-full flex items-center gap-2 p-3 bg-[#1a1a1a] text-left cursor-pointer focus:outline-none group text-neutral-300 hover:text-white transition-colors duration-200 border-b border-neutral-800"
                 aria-expanded="true"
                 aria-controls="toc-content"
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="toc-icon transform transition-transform duration-300"
-                >
-                    <polyline points="6 9 12 15 18 9" />
-                </svg>
-                <span class="font-mono text-sm">Table of Contents</span>
+                <div class="toc-icon transform transition-transform duration-300 text-neutral-500 group-hover:text-neutral-300">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path d="M12 21l-12-18h24z" />
+                    </svg>
+                </div>
+                <span class="font-sans text-sm font-medium">
+                    Table of Contents
+                </span>
             </button>
             <div
                 id="toc-content"
-                class="toc-content grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out pl-6"
+                class="toc-content grid grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-in-out bg-[#111]"
             >
                 <div class="overflow-hidden">
-                    <ul class="space-y-2 font-mono text-sm pt-4 border-l border-neutral-800 ml-1.5 pl-4">
+                    <ul class="text-sm py-4 px-6 space-y-2 list-disc list-outside ml-4 marker:text-neutral-600">
                         {toc.map((heading) => (
                             <li
                                 class:list={[
-                                    "transition-colors duration-200",
+                                    "transition-colors duration-200 pl-1",
                                     heading.depth === minDepth
-                                        ? "text-neutral-400 hover:text-white"
-                                        : "text-neutral-500 hover:text-neutral-300 pl-4",
+                                        ? "text-neutral-300 hover:text-white hover:underline decoration-neutral-600 underline-offset-4"
+                                        : "ml-6 text-neutral-400 hover:text-white hover:underline decoration-neutral-600 underline-offset-4",
                                 ]}
                             >
                                 <a
                                     href={`#${heading.slug}`}
-                                    class="block py-0.5 focus:outline-none focus:text-blue-400"
+                                    class="focus:outline-none focus:text-blue-400"
                                 >
                                     {heading.text}
                                 </a>

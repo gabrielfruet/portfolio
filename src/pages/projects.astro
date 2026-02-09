@@ -11,6 +11,7 @@ const projects = [
     link: "https://github.com/gabrielfruet/cuda-voxelization-torch",
     image:
       "https://github.com/gabrielfruet/cuda-voxelization-torch/raw/master/assets/cuda-voxelization-vis.png",
+    imageFit: "cover" as const,
   },
 ];
 
@@ -20,9 +21,22 @@ const contributions = [
     description:
       "Contributed to PyTorch Ignite, with focus on improving the metrics and logging API.",
     tech: ["Python", "C++", "CUDA"],
-    link: "https://github.com/pytorch/ignite/pulls?q=is%3Apr+author%3Agabrielfruet+",
+    link: "https://github.com/lightly-ai/lightly/pulls/gabrielfruet",
     image:
       "https://raw.githubusercontent.com/pytorch/ignite/master/assets/logo/ignite_logo.png",
+    imageFit: "contain" as const,
+    imageClass: "p-6",
+  },
+  {
+    title: "Lightly",
+    description:
+      "Contributed to Lightly, implementing novel Self-supervised learning methods like SparK.",
+    tech: ["Python", "PyTorch", "Self-supervised Learning"],
+    link: "https://github.com/lightly-ai/lightly/pulls?q=is%3Apr+author%3Agabrielfruet+",
+    image:
+      "https://cdn.prod.website-files.com/62cd5ce03261cba217188442/62cd5ce03261cb22b6188514_47eea2cd606fb9e86a5d12f78666dd14-32bits-256.png",
+    imageFit: "contain" as const,
+    imageClass: "p-6",
   },
 ];
 ---
@@ -33,14 +47,14 @@ const contributions = [
   <main>
     <h1 class="font-mono text-2xl font-bold mb-8 text-white">Projects</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+    <div class="grid grid-cols-1 gap-6 mb-16">
       {projects.map((project) => <ProjectCard {...project} />)}
     </div>
 
     <h2 class="font-mono text-xl font-bold mb-8 text-white">
       Open Source Contributions
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6">
       {contributions.map((contribution) => <ProjectCard {...contribution} />)}
     </div>
   </main>

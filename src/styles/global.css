@@ -2,13 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    --color-background: #000000;
-    --color-foreground: #EDEDED;
-    --color-subtle: #A3A3A3;
-    --color-border: #333333;
+    --color-background: #0a0a0a;
+    --color-foreground: #fafafa;
+    --color-subtle: #a1a1a1;
+    --color-border: #262626;
 
     --font-mono: 'Geist Mono', monospace;
     --font-sans: 'Inter', sans-serif;
+
+    --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+}
+
+@keyframes infinite-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @layer base {

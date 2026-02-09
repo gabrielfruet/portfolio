@@ -1,0 +1,87 @@
+---
+const contributions = [
+    {
+        name: "PyTorch Ignite",
+        logo: "https://raw.githubusercontent.com/pytorch/ignite/master/assets/logo/ignite_logo.png",
+        url: "https://github.com/pytorch/ignite",
+    },
+    {
+        name: "Lightly",
+        logo: "https://cdn.prod.website-files.com/62cd5ce03261cba217188442/62cd5ce03261cb22b6188514_47eea2cd606fb9e86a5d12f78666dd14-32bits-256.png",
+        url: "https://github.com/lightly-ai/lightly",
+    },
+];
+
+// 5x duplication ensures we have enough items for various screen widths
+const items = [
+    ...contributions,
+    ...contributions,
+    ...contributions,
+    ...contributions,
+    ...contributions,
+];
+---
+
+<div
+    class="relative w-full overflow-hidden mb-20 pointer-events-none sm:pointer-events-auto"
+>
+    <div
+        class="absolute inset-y-0 left-0 w-12 sm:w-24 z-10 bg-gradient-to-r from-[var(--color-background)] to-transparent pointer-events-none"
+    >
+    </div>
+    <div
+        class="absolute inset-y-0 right-0 w-12 sm:w-24 z-10 bg-gradient-to-l from-[var(--color-background)] to-transparent pointer-events-none"
+    >
+    </div>
+
+    <div
+        class="flex w-max animate-infinite-scroll hover:[animation-play-state:paused] items-center"
+    >
+        {/* First copy */}
+        <div class="flex gap-12 sm:gap-24 px-6 sm:px-12 shrink-0">
+            {
+                items.map((item) => (
+                    <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex items-center justify-center gap-3 opacity-50 hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
+                    >
+                        <img
+                            src={item.logo}
+                            alt={item.name}
+                            class="h-8 sm:h-10 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                            loading="lazy"
+                        />
+                        <span class="font-mono text-sm sm:text-base font-medium text-neutral-400 group-hover:text-white transition-colors duration-300">
+                            {item.name}
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+        {/* Second copy for infinite loop */}
+        <div class="flex gap-12 sm:gap-24 px-6 sm:px-12 shrink-0">
+            {
+                items.map((item) => (
+                    <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group flex items-center justify-center gap-3 opacity-50 hover:opacity-100 transition-opacity duration-300 pointer-events-auto"
+                    >
+                        <img
+                            src={item.logo}
+                            alt={item.name}
+                            class="h-8 sm:h-10 w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                            loading="lazy"
+                        />
+                        <span class="font-mono text-sm sm:text-base font-medium text-neutral-400 group-hover:text-white transition-colors duration-300">
+                            {item.name}
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</div>

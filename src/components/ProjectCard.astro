@@ -5,47 +5,73 @@ interface Props {
   tech: string[];
   link?: string;
   image?: string;
+  imageFit?: "cover" | "contain";
+  imageClass?: string;
 }
 
-const { title, description, tech, link, image } = Astro.props;
+const {
+  title,
+  description,
+  tech,
+  link,
+  image,
+  imageFit = "cover",
+  imageClass = "",
+} = Astro.props;
+
+const Tag = link ? "a" : "div";
+const containerProps = link
+  ? { href: link, target: "_blank", rel: "noopener noreferrer" }
+  : {};
 ---
 
-<div
-  class="border border-neutral-800 p-6 hover:border-neutral-600 transition-colors duration-300 group"
+<Tag
+  class="group relative flex flex-col sm:flex-row gap-6 p-5 rounded-2xl border border-neutral-800 bg-neutral-900/30 hover:border-neutral-700 hover:bg-neutral-900/50 transition-all duration-300 items-stretch"
+  {...containerProps}
 >
-  <div class="flex justify-between items-start mb-4">
-    <h3
-      class="font-mono text-lg font-medium text-white group-hover:text-blue-400 transition-colors"
-    >
-      {title}
-    </h3>
-    {
-      link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-neutral-500 hover:text-white transition-colors"
-        >
-          ↗
-        </a>
-      )
-    }
+  <div class="flex-1 flex flex-col">
+    <div class="flex justify-between items-start mb-2">
+      <h3
+        class="font-mono text-lg font-medium text-white group-hover:text-blue-400 transition-colors"
+      >
+        {title}
+      </h3>
+      {
+        link && (
+          <span class="text-neutral-500 group-hover:text-white transition-colors ml-4">
+            ↗
+          </span>
+        )
+      }
+    </div>
+
+    <p class="text-neutral-400 mb-4 text-sm leading-relaxed line-clamp-3">
+      {description}
+    </p>
+
+    <div class="flex flex-wrap gap-2 mt-auto">
+      {
+        tech.map((t) => (
+          <span class="text-xs font-mono text-neutral-400 bg-neutral-800/50 px-2.5 py-1 rounded-full border border-neutral-700/50">
+            {t}
+          </span>
+        ))
+      }
+    </div>
   </div>
 
-  <p class="text-neutral-400 mb-6 text-sm leading-relaxed">
-    {description}
-  </p>
-
-  {image && <img src={image} alt={title} class="w-full h-auto mb-6 rounded" />}
-
-  <div class="flex flex-wrap gap-2">
-    {
-      tech.map((t) => (
-        <span class="text-xs font-mono text-neutral-500 bg-neutral-900 px-2 py-1 rounded">
-          {t}
-        </span>
-      ))
-    }
-  </div>
-</div>
+  {
+    image && (
+      <div
+        class={`w-full sm:w-48 h-32 flex-shrink-0 overflow-hidden rounded-xl border border-neutral-800/50 ${imageFit === "contain" ? "bg-neutral-950" : ""}`}
+      >
+        <img
+          src={image}
+          alt={title}
+          style={{ objectFit: imageFit }}
+          class={`w-full h-full transition-all duration-500 group-hover:scale-105 ${imageClass}`}
+        />
+      </div>
+    )
+  }
+</Tag>
