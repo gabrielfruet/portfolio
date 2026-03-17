@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import ContributionCarousel from "../components/ContributionCarousel.astro";
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
@@ -23,17 +22,9 @@ const posts = (await getCollection("blog"))
         autonomous systems. I write about machine learning, computer vision,
         and the intersection of research and engineering.
       </p>
-    </div>
-
-    <ContributionCarousel />
-
-    <div class="mb-16">
-      <a
-        href={`${import.meta.env.BASE_URL}/projects`}
-        class="text-accent hover:underline text-lg"
-      >
-        Projects & Open Source →
-      </a>
+      <p class="leading-relaxed mt-6">
+        I contribute to <a href="https://github.com/pytorch/ignite" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">PyTorch Ignite</a> and <a href="https://github.com/lightly-ai/lightly" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Lightly</a>.
+      </p>
     </div>
 
     <section>
