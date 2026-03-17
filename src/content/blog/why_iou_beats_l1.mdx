@@ -70,7 +70,7 @@ The model is blind. It knows it's wrong, but it doesn't know *which way* to move
  
 We need a loss function that says:
  
-> "Hey, I know you aren't overlapping the ground truth yet, but go *this* way and you'll find it."
+> Hey, I know you aren't overlapping the ground truth yet, but go *this* way and you'll find it.
 
 And that's what GIoU, DIoU, and CIoU loss functions do.
 
@@ -86,9 +86,9 @@ It is defined as a sum of three penalties:
  
  Where:
  
- - **Overlap**: The standard IoU term.
- - **Distance**: $\rho^2$ is the distance between center points, and $c$ is the diagonal of the enclosing box.
- - **Aspect Ratio**: $\alpha v$ measures if the width/height ratio is consistent.
+ - Overlap: The standard IoU term.
+ - Distance: $\rho^2$ is the distance between center points, and $c$ is the diagonal of the enclosing box.
+ - Aspect Ratio: $\alpha v$ measures if the width/height ratio is consistent.
 
 The CIoU loss landscape is very smooth, and the gradient always points toward the minimum.
 
@@ -107,8 +107,8 @@ Since we evaluate using IoU, we want our loss function to follow it closely. Whe
  
 The difference is clear.
  
-*   **L1 Loss (Left)**: It's messy. For the same IoU (e.g., 0.4), the loss can be anywhere from 15 to 30.
-*   **CIoU Loss (Right)**: It's a tight curve. A specific loss value almost guarantees a specific IoU.
+*   L1 Loss (Left): It's messy. For the same IoU (e.g., 0.4), the loss can be anywhere from 15 to 30.
+*   CIoU Loss (Right): It's a tight curve. A specific loss value almost guarantees a specific IoU.
 
 # Conclusion
 
