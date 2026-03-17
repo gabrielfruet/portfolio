@@ -50,13 +50,18 @@
         --tw-prose-headings: #E8E4DC;
         --tw-prose-body: #E8E4DC;
         --tw-prose-links: #C4A77D;
-        --tw-prose-bold: #E8E4DC;
+        --tw-prose-bold: #E8E4DC !important;
         --tw-prose-counters: #8A857C;
         --tw-prose-bullets: #8A857C;
         --tw-prose-hr: #3D3935;
         --tw-prose-quotes: #E8E4DC;
         --tw-prose-th-borders: #3D3935;
         --tw-prose-td-borders: #3D3935;
+    }
+
+    /* Override prose-invert defaults */
+    .prose strong, .prose b {
+        color: #E8E4DC !important;
     }
 
     .prose pre {
