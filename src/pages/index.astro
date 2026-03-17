@@ -12,12 +12,12 @@ const posts = (await getCollection("blog"))
 <BaseLayout title="Gabriel Fruet | Computer Vision Engineer">
   <Header />
 
-  <main class="max-w-2xl">
-    <h1 class="text-3xl md:text-4xl font-bold mb-8 text-white">
+  <main>
+    <h1 class="text-2xl md:text-3xl font-medium mb-8 text-[#CECDC3]">
       Hi, I'm Gabriel.
     </h1>
 
-    <div class="prose prose-invert prose-lg text-neutral-300 mb-12">
+    <div class="prose prose-invert prose-lg text-[#CECDC3] mb-12">
       <p class="mb-6">
         I am a Computer Vision Engineer working on LiDAR perception and
         autonomous systems. Also working with computer vision and machine
@@ -30,29 +30,29 @@ const posts = (await getCollection("blog"))
     <div class="mb-12">
       <a
         href={`${import.meta.env.BASE_URL}/projects`}
-        class="text-neutral-300 hover:underline"
+        class="text-[#CECDC3] hover:underline"
       >
         Projects & Open Source →
       </a>
     </div>
 
     <section>
-      <h2 class="text-xl font-bold mb-6 text-white">Latest Posts</h2>
-      <ul class="space-y-6">
+      <h2 class="text-xl font-medium mb-6 text-[#CECDC3]">Latest Posts</h2>
+      <ul class="space-y-0">
         {
           posts.map((post) => (
-            <li class="border-b border-neutral-800 pb-6 last:border-0 last:pb-0">
+            <li class="py-4 border-b border-[#403E3C]">
               <a
                 href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
                 class="block"
               >
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                  <h3 class="text-lg font-medium text-white">
+                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                  <h3 class="text-lg font-medium text-[#CECDC3]">
                     {post.data.title}
                   </h3>
                   <time
                     datetime={post.data.pubDate.toISOString()}
-                    class="text-sm text-neutral-500 whitespace-nowrap mt-1 sm:mt-0"
+                    class="text-sm text-[#575653] whitespace-nowrap mt-1 sm:mt-0"
                   >
                     {post.data.pubDate.toLocaleDateString("en-US", {
                       year: "numeric",
@@ -66,10 +66,10 @@ const posts = (await getCollection("blog"))
           ))
         }
       </ul>
-      <div class="mt-8">
+      <div class="mt-6">
         <a
           href={`${import.meta.env.BASE_URL}/blog`}
-          class="text-sm text-neutral-400 hover:text-white hover:underline"
+          class="text-base text-[#575653] hover:text-[#CECDC3] hover:underline"
         >
           Read all posts →
         </a>

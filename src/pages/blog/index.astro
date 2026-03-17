@@ -12,23 +12,23 @@ const posts = (await getCollection("blog")).sort(
   <Header />
 
   <main>
-    <h1 class="font-mono text-2xl font-bold mb-8 text-white">Blog</h1>
+    <h1 class="text-2xl font-medium mb-8 text-[#CECDC3]">Blog</h1>
 
-    <ul class="space-y-8">
+    <ul class="space-y-0">
       {
         posts.map((post) => (
-          <li class="border-b border-neutral-800 pb-8 last:border-0">
+          <li class="py-4 border-b border-[#403E3C]">
             <a
               href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
-              class="group block"
+              class="block"
             >
-              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h2 class="text-lg font-medium text-white group-hover:text-blue-400 transition-colors">
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
+                <h2 class="text-lg font-medium text-[#CECDC3]">
                   {post.data.title}
                 </h2>
                 <time
                   datetime={post.data.pubDate.toISOString()}
-                  class="text-sm font-mono text-neutral-500 whitespace-nowrap mt-1 sm:mt-0"
+                  class="text-sm text-[#575653] whitespace-nowrap mt-1 sm:mt-0"
                 >
                   {post.data.pubDate.toLocaleDateString("en-US", {
                     year: "numeric",
@@ -38,7 +38,7 @@ const posts = (await getCollection("blog")).sort(
                 </time>
               </div>
 
-              <p class="text-neutral-400 text-sm leading-relaxed max-w-2xl">
+              <p class="text-[#575653] text-base leading-relaxed max-w-2xl">
                 {post.data.description}
               </p>
             </a>

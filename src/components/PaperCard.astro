@@ -11,10 +11,10 @@ interface Props {
 const { title, authors, venue, year, link, abstract } = Astro.props;
 ---
 
-<div class="border-b border-neutral-800 py-8 first:pt-0 last:border-0">
+<div class="py-6 border-b border-[#403E3C] first:pt-0">
     <div class="flex flex-col gap-2">
         <div class="flex justify-between items-start gap-4">
-            <h3 class="font-medium text-lg text-white leading-tight">
+            <h3 class="font-medium text-lg text-[#CECDC3] leading-tight">
                 {title}
             </h3>
             {
@@ -23,7 +23,7 @@ const { title, authors, venue, year, link, abstract } = Astro.props;
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-neutral-500 hover:text-white whitespace-nowrap text-sm"
+                        class="text-[#575653] hover:text-[#CECDC3] whitespace-nowrap text-sm no-underline"
                     >
                         [PDF] ↗
                     </a>
@@ -31,18 +31,19 @@ const { title, authors, venue, year, link, abstract } = Astro.props;
             }
         </div>
 
-        <div class="text-neutral-400 text-sm">
+        <div class="text-[#575653] text-base">
             {authors.join(", ")}
         </div>
 
-        <div class="flex items-center gap-3 text-xs text-neutral-500 mt-1">
-            <span class="bg-neutral-900 px-2 py-1 rounded text-neutral-300">{venue}</span>
+        <div class="flex items-center gap-3 text-xs text-[#575653] mt-1">
+            <span>{venue}</span>
+            <span>·</span>
             <span>{year}</span>
         </div>
 
         {
             abstract && (
-                <p class="text-neutral-500 text-sm mt-3 leading-relaxed">
+                <p class="text-[#575653] text-base mt-3 leading-relaxed">
                     {abstract}
                 </p>
             )

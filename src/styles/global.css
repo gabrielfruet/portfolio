@@ -2,43 +2,45 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    --color-background: #0a0a0a;
-    --color-foreground: #fafafa;
-    --color-subtle: #a1a1a1;
-    --color-border: #262626;
+    /* Flexoki-inspired dark theme */
+    --color-background: #100F0F;
+    --color-foreground: #CECDC3;
+    --color-muted: #575653;
+    --color-border: #403E3C;
 }
 
 @layer base {
     body {
         background-color: var(--color-background);
         color: var(--color-foreground);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 1.125rem;
+        line-height: 1.5;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        font-weight: 600;
+        font-weight: 500;
         letter-spacing: -0.02em;
     }
 }
 
 @layer components {
     .prose {
-        --tw-prose-pre-bg: #0d1117;
-        --tw-prose-code: #e5e7eb;
-        --tw-prose-quote-borders: #262626;
+        --tw-prose-pre-bg: #100F0F;
+        --tw-prose-code: #CECDC3;
+        --tw-prose-quote-borders: #403E3C;
     }
 
     .prose pre {
-        @apply border border-neutral-800 rounded-lg overflow-x-auto my-6;
         background-color: var(--tw-prose-pre-bg) !important;
         padding: 1rem !important;
     }
 
     .prose pre code {
         font-weight: 400 !important;
-        font-size: 0.75rem !important;
+        font-size: 0.875rem !important;
         line-height: 1.5 !important;
         background-color: transparent !important;
         border: none !important;
@@ -51,9 +53,12 @@
     }
 
     .prose :not(pre)>code {
-        @apply bg-neutral-900 px-1.5 py-0.5 rounded text-neutral-200 font-mono text-sm border border-neutral-800;
-        font-weight: 400;
-        word-break: break-word;
+        background-color: #282726;
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        color: #CECDC3;
+        font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", monospace;
+        font-size: 0.875rem;
     }
 
     .prose :not(pre)>code::before,

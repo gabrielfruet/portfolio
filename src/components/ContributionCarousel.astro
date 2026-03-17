@@ -11,23 +11,21 @@ const contributions = [
 ];
 ---
 
-<div class="mb-8">
-    <p class="text-sm text-neutral-400">
-        Contributing to:{" "}
-        {
-            contributions.map((item, index) => (
-                <>
-                    <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-neutral-300 hover:underline"
-                    >
-                        {item.name}
-                    </a>
-                    {index < contributions.length - 1 && ", "}
-                </>
-            ))
-        }
-    </p>
-</div>
+<p class="text-base text-[#575653] mb-12">
+    Contributing to:{" "}
+    {
+        contributions.map((item, index) => (
+            <>
+                <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-[#CECDC3] hover:underline"
+                >
+                    {item.name}
+                </a>
+                {index < contributions.length - 1 && ", "}
+            </>
+        ))
+    }
+</p>

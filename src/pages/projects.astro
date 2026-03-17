@@ -45,16 +45,16 @@ const contributions = [
   <Header />
 
   <main>
-    <h1 class="font-mono text-2xl font-bold mb-8 text-white">Projects</h1>
+    <h1 class="text-2xl font-medium mb-8 text-[#CECDC3]">Projects</h1>
 
-    <div class="grid grid-cols-1 gap-6 mb-16">
+    <div class="flex flex-col gap-4 mb-16">
       {projects.map((project) => <ProjectCard {...project} />)}
     </div>
 
-    <h2 class="font-mono text-xl font-bold mb-8 text-white">
+    <h2 class="text-xl font-medium mb-8 text-[#CECDC3]">
       Open Source Contributions
     </h2>
-    <div class="grid grid-cols-1 gap-6">
+    <div class="flex flex-col gap-4">
       {contributions.map((contribution) => <ProjectCard {...contribution} />)}
     </div>
   </main>
