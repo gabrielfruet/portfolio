@@ -1,6 +1,4 @@
 ---
-import "@fontsource/geist-mono";
-import "@fontsource/inter";
 import "../styles/global.css";
 
 interface Props {
@@ -72,7 +70,7 @@ const socialImageURL = new URL(image, Astro.url);
       href="/portfolio/rss.xml"
     />
 
-    <!-- KaTeX CSS for math rendering (loaded only if needed, but keeping global for simplicity if blog is heavy) -->
+    <!-- KaTeX CSS for math rendering -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
@@ -81,9 +79,7 @@ const socialImageURL = new URL(image, Astro.url);
     />
     <slot name="head" />
   </head>
-  <body
-    class="max-w-3xl mx-auto px-6 py-12 md:py-20 min-h-screen flex flex-col"
-  >
+  <body class="max-w-3xl mx-auto px-6 py-12 md:py-20 min-h-screen">
     <slot />
   </body>
 </html>
