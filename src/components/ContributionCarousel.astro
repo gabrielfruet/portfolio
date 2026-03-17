@@ -11,7 +11,7 @@ const contributions = [
 ];
 ---
 
-<p class="text-base text-[#575653] mb-12">
+<p class="text-base text-muted mb-14">
     Contributing to:{" "}
     {
         contributions.map((item, index) => (
@@ -20,7 +20,7 @@ const contributions = [
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-[#CECDC3] hover:underline"
+                    class="text-accent hover:underline"
                 >
                     {item.name}
                 </a>

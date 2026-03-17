@@ -12,18 +12,20 @@ const posts = (await getCollection("blog")).sort(
   <Header />
 
   <main>
-    <h1 class="text-2xl font-medium mb-8 text-[#CECDC3]">Blog</h1>
+    <h1 class="text-lg font-semibold mb-8 text-[#8A8A8A] uppercase tracking-wider">
+      Blog
+    </h1>
 
     <ul class="space-y-0">
       {
         posts.map((post) => (
-          <li class="py-4 border-b border-[#403E3C]">
+          <li class="py-5 border-b border-[#403E3C] hover:bg-[#2A2927] rounded-lg px-3 -mx-3 transition-colors duration-200">
             <a
               href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
               class="block"
             >
-              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-1">
-                <h2 class="text-lg font-medium text-[#CECDC3]">
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                <h2 class="text-xl font-medium text-[#CECDC3] group-hover:text-white transition-colors">
                   {post.data.title}
                 </h2>
                 <time

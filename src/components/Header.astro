@@ -7,13 +7,13 @@ const links = [
 ];
 ---
 
-<header class="flex justify-between items-center mb-16 text-base">
-  <nav class="flex gap-6">
+<header class="flex justify-between items-center mb-20 text-base">
+  <nav class="flex gap-8">
     {
       links.map((link) => (
         <a
           href={`${import.meta.env.BASE_URL}${link.href === "/" ? "" : link.href}`}
-          class="text-[#575653] hover:text-[#CECDC3] no-underline"
+          class="text-muted hover:text-foreground no-underline transition-colors duration-200"
         >
           {link.text}
         </a>
@@ -25,7 +25,7 @@ const links = [
       href="https://github.com/gabrielfruet"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-[#575653] hover:text-[#CECDC3] no-underline"
+      class="text-muted hover:text-foreground no-underline transition-colors duration-200"
     >
       GitHub
     </a>
@@ -33,7 +33,7 @@ const links = [
       href="https://www.linkedin.com/in/gabriel-fruet/"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-[#575653] hover:text-[#CECDC3] no-underline"
+      class="text-muted hover:text-foreground no-underline transition-colors duration-200"
     >
       LinkedIn
     </a>

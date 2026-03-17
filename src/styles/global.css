@@ -2,11 +2,11 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    /* Flexoki-inspired dark theme */
-    --color-background: #100F0F;
-    --color-foreground: #CECDC3;
-    --color-muted: #575653;
-    --color-border: #403E3C;
+    /* Warm earth-tone dark theme - digital garden aesthetic */
+    --color-background: #1A1815;
+    --color-foreground: #E8E4DC;
+    --color-muted: #8A857C;
+    --color-accent: #C4A77D;
 }
 
 @layer base {
@@ -15,22 +15,48 @@
         color: var(--color-foreground);
         font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
         font-size: 1.125rem;
-        line-height: 1.5;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Serif for headers - academic, thoughtful */
     h1, h2, h3, h4, h5, h6 {
+        font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
         font-weight: 500;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.01em;
+        line-height: 1.3;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.375rem;
     }
 }
 
 @layer components {
     .prose {
-        --tw-prose-pre-bg: #100F0F;
-        --tw-prose-code: #CECDC3;
-        --tw-prose-quote-borders: #403E3C;
+        --tw-prose-pre-bg: #1A1815;
+        --tw-prose-code: #E8E4DC;
+        --tw-prose-quote-borders: #3D3935;
+        --tw-prose-headings: #E8E4DC;
+        --tw-prose-body: #E8E4DC;
+        --tw-prose-links: #C4A77D;
+        --tw-prose-bold: #E8E4DC;
+        --tw-prose-counters: #8A857C;
+        --tw-prose-bullets: #8A857C;
+        --tw-prose-hr: #3D3935;
+        --tw-prose-quotes: #E8E4DC;
+        --tw-prose-th-borders: #3D3935;
+        --tw-prose-td-borders: #3D3935;
     }
 
     .prose pre {
@@ -53,10 +79,10 @@
     }
 
     .prose :not(pre)>code {
-        background-color: #282726;
+        background-color: #2A2722;
         padding: 0.125rem 0.25rem;
         border-radius: 0.25rem;
-        color: #CECDC3;
+        color: #E8E4DC;
         font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", monospace;
         font-size: 0.875rem;
     }
