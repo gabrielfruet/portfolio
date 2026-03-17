@@ -1,6 +1,5 @@
 ---
 import Header from "../components/Header.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const projects = [
@@ -9,34 +8,19 @@ const projects = [
     description: "A fast voxelization implementation for PyTorch using CUDA.",
     tech: ["C++", "CUDA", "PyTorch"],
     link: "https://github.com/gabrielfruet/cuda-voxelization-torch",
-    image:
-      "https://github.com/gabrielfruet/cuda-voxelization-torch/raw/master/assets/cuda-voxelization-vis.png",
-    imageFit: "cover" as const,
   },
 ];
 
 const contributions = [
   {
     title: "PyTorch Ignite",
-    description:
-      "Contributed to PyTorch Ignite, with focus on improving the metrics and logging API.",
-    tech: ["Python", "C++", "CUDA"],
-    link: "https://github.com/lightly-ai/lightly/pulls/gabrielfruet",
-    image:
-      "https://raw.githubusercontent.com/pytorch/ignite/master/assets/logo/ignite_logo.png",
-    imageFit: "contain" as const,
-    imageClass: "p-6",
+    description: "Contributed to PyTorch Ignite, with focus on improving the metrics and logging API.",
+    link: "https://github.com/pytorch/ignite",
   },
   {
     title: "Lightly",
-    description:
-      "Contributed to Lightly, implementing novel Self-supervised learning methods like SparK.",
-    tech: ["Python", "PyTorch", "Self-supervised Learning"],
-    link: "https://github.com/lightly-ai/lightly/pulls?q=is%3Apr+author%3Agabrielfruet+",
-    image:
-      "https://cdn.prod.website-files.com/62cd5ce03261cba217188442/62cd5ce03261cb22b6188514_47eea2cd606fb9e86a5d12f78666dd14-32bits-256.png",
-    imageFit: "contain" as const,
-    imageClass: "p-6",
+    description: "Contributed to Lightly, implementing novel Self-supervised learning methods like SparK.",
+    link: "https://github.com/lightly-ai/lightly",
   },
 ];
 ---
@@ -45,17 +29,67 @@ const contributions = [
   <Header />
 
   <main>
-    <h1 class="text-2xl font-medium mb-8 text-[#CECDC3]">Projects</h1>
+    <h1 class="text-3xl md:text-4xl mb-16 text-foreground">
+      Projects
+    </h1>
 
-    <div class="flex flex-col gap-4 mb-16">
-      {projects.map((project) => <ProjectCard {...project} />)}
-    </div>
+    <section class="mb-16">
+      <p class="text-muted text-lg leading-relaxed mb-8">
+        A selection of projects I've built and contributed to.
+      </p>
 
-    <h2 class="text-xl font-medium mb-8 text-[#CECDC3]">
-      Open Source Contributions
-    </h2>
-    <div class="flex flex-col gap-4">
-      {contributions.map((contribution) => <ProjectCard {...contribution} />)}
-    </div>
+      <div class="space-y-12">
+        {
+          projects.map((project) => (
+            <article>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block"
+              >
+                <h2 class="text-xl text-foreground group-hover:text-accent transition-colors duration-200 inline">
+                  {project.title}
+                </h2>
+              </a>
+              <p class="text-muted mt-2 leading-relaxed max-w-xl">
+                {project.description}
+              </p>
+              <p class="text-muted text-sm mt-3">
+                {project.tech.join(" · ")}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-xl mb-8 text-muted uppercase tracking-widest font-normal">
+        Open Source Contributions
+      </h2>
+
+      <div class="space-y-10">
+        {
+          contributions.map((contribution) => (
+            <article>
+              <a
+                href={contribution.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block"
+              >
+                <h3 class="text-lg text-foreground group-hover:text-accent transition-colors duration-200 inline">
+                  {contribution.title}
+                </h3>
+              </a>
+              <p class="text-muted mt-2 leading-relaxed max-w-xl">
+                {contribution.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
   </main>
 </BaseLayout>
