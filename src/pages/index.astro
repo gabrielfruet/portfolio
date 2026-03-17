@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -28,9 +29,7 @@ const posts = (await getCollection("blog"))
     </div>
 
     <section>
-      <h2 class="text-xl mb-8 text-muted uppercase tracking-widest font-normal">
-        Latest Posts
-      </h2>
+      <SectionHeader title="Latest Posts" />
       <ul class="space-y-0">
         {
           posts.map((post) => (

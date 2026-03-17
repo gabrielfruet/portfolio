@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import PaperCard from "../components/PaperCard.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
 
 const apisflow_abstract =
     "ApisFlow is a real-time object-tracking framework for automatically detecting, tracking, classifying and counting the flow of honey bee castes at the hive entrance.";
@@ -41,7 +42,7 @@ const papers = [
     <Header />
 
     <main>
-        <h1 class="text-2xl font-medium mb-8 text-[#CECDC3]">Papers</h1>
+        <PageHeader title="Papers" />
 
         <div class="flex flex-col">
             {papers.map((paper) => <PaperCard {...paper} />)}

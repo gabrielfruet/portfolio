@@ -1,6 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SectionHeader from "../components/SectionHeader.astro";
 
 const projects = [
   {
@@ -29,9 +31,7 @@ const contributions = [
   <Header />
 
   <main>
-    <h1 class="text-3xl md:text-4xl mb-16 text-foreground">
-      Projects
-    </h1>
+    <PageHeader title="Projects" />
 
     <section class="mb-16">
       <p class="text-muted text-lg leading-relaxed mb-8">
@@ -65,9 +65,7 @@ const contributions = [
     </section>
 
     <section>
-      <h2 class="text-xl mb-8 text-muted uppercase tracking-widest font-normal">
-        Open Source Contributions
-      </h2>
+      <SectionHeader title="Open Source Contributions" />
 
       <div class="space-y-10">
         {
