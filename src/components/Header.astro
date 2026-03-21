@@ -7,8 +7,8 @@ const links = [
 ];
 ---
 
-<header class="flex justify-between items-center mb-20 text-[15px]">
-  <nav class="flex gap-6">
+<header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-16 sm:mb-20 text-[14px] sm:text-[15px]">
+  <nav class="flex flex-wrap gap-4 sm:gap-6">
     {
       links.map((link) => (
         <a
@@ -20,7 +20,7 @@ const links = [
       ))
     }
   </nav>
-  <div class="flex gap-5">
+  <div class="flex gap-4 sm:gap-5">
     <a
       href="https://github.com/gabrielfruet"
       target="_blank"
