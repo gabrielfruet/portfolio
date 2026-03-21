@@ -34,56 +34,50 @@ const contributions = [
     <PageHeader title="Projects" />
 
     <section class="mb-16">
-      <div class="space-y-12">
+      <ul class="space-y-0">
         {
           projects.map((project) => (
-            <article>
+            <li class="py-2">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group block"
+                class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
               >
-                <h2 class="text-xl text-foreground group-hover:text-accent transition-colors duration-200 inline">
+                <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
                   {project.title}
-                </h2>
+                </span>
+                <span class="text-[13px] text-[#6e6a67]">
+                  {project.tech.join(" · ")}
+                </span>
               </a>
-              <p class="text-muted mt-2 leading-relaxed max-w-xl">
-                {project.description}
-              </p>
-              <p class="text-muted text-sm mt-3">
-                {project.tech.join(" · ")}
-              </p>
-            </article>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </section>
 
     <section>
-      <SectionHeader title="Open Source Contributions" />
+      <SectionHeader title="Open Source" />
 
-      <div class="space-y-12">
+      <ul class="space-y-0">
         {
           contributions.map((contribution) => (
-            <article>
+            <li class="py-2">
               <a
                 href={contribution.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group block"
+                class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
               >
-                <h2 class="text-xl text-foreground group-hover:text-accent transition-colors duration-200 inline">
+                <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
                   {contribution.title}
-                </h2>
+                </span>
               </a>
-              <p class="text-muted mt-2 leading-relaxed max-w-xl">
-                {contribution.description}
-              </p>
-            </article>
+            </li>
           ))
         }
-      </div>
+      </ul>
     </section>
   </main>
 </BaseLayout>

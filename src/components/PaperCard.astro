@@ -11,42 +11,18 @@ interface Props {
 const { title, authors, venue, year, link, abstract } = Astro.props;
 ---
 
-<div class="py-6 border-b border-[#403E3C] first:pt-0">
-    <div class="flex flex-col gap-2">
-        <div class="flex justify-between items-start gap-4">
-            <h3 class="font-medium text-lg text-[#CECDC3] leading-tight">
-                {title}
-            </h3>
-            {
-                link && (
-                    <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-[#575653] hover:text-[#CECDC3] whitespace-nowrap text-sm no-underline"
-                    >
-                        [PDF] ↗
-                    </a>
-                )
-            }
-        </div>
-
-        <div class="text-[#575653] text-base">
-            {authors.join(", ")}
-        </div>
-
-        <div class="flex items-center gap-3 text-xs text-[#575653] mt-1">
-            <span>{venue}</span>
-            <span>·</span>
-            <span>{year}</span>
-        </div>
-
-        {
-            abstract && (
-                <p class="text-[#575653] text-base mt-3 leading-relaxed">
-                    {abstract}
-                </p>
-            )
-        }
+<li class="py-3">
+    <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline"
+    >
+        <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
+            {title}
+        </span>
+    </a>
+    <div class="text-[13px] text-[#6e6a67] mt-1">
+        {authors.join(", ")} · {venue}, {year}
     </div>
-</div>
+</li>

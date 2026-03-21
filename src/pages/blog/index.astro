@@ -18,30 +18,20 @@ const posts = (await getCollection("blog")).sort(
     <ul class="space-y-0">
       {
         posts.map((post) => (
-          <li class="py-5 border-b border-[#403E3C] hover:bg-[#2A2927] rounded-lg px-3 -mx-3 transition-colors duration-200">
+          <li class="py-2">
             <a
               href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
-              class="block"
+              class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
             >
-              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                <h2 class="text-xl font-medium text-[#CECDC3] group-hover:text-white transition-colors">
-                  {post.data.title}
-                </h2>
-                <time
-                  datetime={post.data.pubDate.toISOString()}
-                  class="text-sm text-[#575653] whitespace-nowrap mt-1 sm:mt-0"
-                >
-                  {post.data.pubDate.toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </time>
-              </div>
-
-              <p class="text-[#575653] text-base leading-relaxed max-w-2xl">
-                {post.data.description}
-              </p>
+              <span class="text-[13px] text-[#6e6a67] tabular-nums shrink-0">
+                {post.data.pubDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                })}
+              </span>
+              <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
+                {post.data.title}
+              </span>
             </a>
           </li>
         ))
