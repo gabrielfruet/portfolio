@@ -27,12 +27,11 @@ const posts = (await getCollection("blog"))
       </p>
     </div>
 
-    <section>
-      <h2 class="text-[15px] font-medium text-[#e8e4dc] tracking-tight mb-8">Latest Posts</h2>
+    <div class="mt-20 pt-12 border-t border-[#2a2722]">
       <ul class="space-y-0">
         {
           posts.map((post) => (
-            <li class="py-2">
+            <li class="py-1">
               <a
                 href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
                 class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
@@ -57,6 +56,6 @@ const posts = (await getCollection("blog"))
       >
         All posts →
       </a>
-    </section>
+    </div>
   </main>
 </BaseLayout>
