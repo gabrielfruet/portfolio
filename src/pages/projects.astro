@@ -37,19 +37,24 @@ const contributions = [
       <ul class="space-y-0">
         {
           projects.map((project) => (
-            <li class="py-2">
+            <li class="py-4">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
+                class="group block"
               >
-                <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
-                  {project.title}
-                </span>
-                <span class="text-[13px] text-[#6e6a67]">
-                  {project.tech.join(" · ")}
-                </span>
+                <div class="flex items-baseline gap-3 mb-1">
+                  <span class="text-[16px] text-[#e8e4dc] group-hover:underline">
+                    {project.title}
+                  </span>
+                  <span class="text-[13px] text-[#6e6a67]">
+                    {project.tech.join(" · ")}
+                  </span>
+                </div>
+                <p class="text-[14px] text-[#6e6a67] leading-relaxed max-w-[540px]">
+                  {project.description}
+                </p>
               </a>
             </li>
           ))
@@ -63,16 +68,21 @@ const contributions = [
       <ul class="space-y-0">
         {
           contributions.map((contribution) => (
-            <li class="py-2">
+            <li class="py-4">
               <a
                 href={contribution.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
+                class="group block"
               >
-                <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
-                  {contribution.title}
-                </span>
+                <div class="mb-1">
+                  <span class="text-[16px] text-[#e8e4dc] group-hover:underline">
+                    {contribution.title}
+                  </span>
+                </div>
+                <p class="text-[14px] text-[#6e6a67] leading-relaxed max-w-[540px]">
+                  {contribution.description}
+                </p>
               </a>
             </li>
           ))
