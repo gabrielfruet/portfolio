@@ -1,0 +1,43 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /portfolio
+      - text: ·
+      - link "Blog" [ref=e5] [cursor=pointer]:
+        - /url: /portfolio/blog
+      - text: ·
+      - link "Projects" [ref=e6] [cursor=pointer]:
+        - /url: /portfolio/projects
+      - text: ·
+      - link "Papers" [ref=e7] [cursor=pointer]:
+        - /url: /portfolio/papers
+      - text: ·
+      - link "GitHub" [ref=e8] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet
+      - text: ·
+      - link "LinkedIn" [ref=e9] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/gabriel-fruet/
+  - main [ref=e10]:
+    - heading "Hi, I'm Gabriel." [level=1] [ref=e11]
+    - paragraph [ref=e12]: I am a Computer Vision Engineer working on LiDAR perception and autonomous systems. I write about machine learning, computer vision, and the intersection of research and engineering.
+    - paragraph [ref=e13]:
+      - text: I contribute to
+      - link "PyTorch Ignite" [ref=e14] [cursor=pointer]:
+        - /url: https://github.com/pytorch/ignite
+      - text: and
+      - link "Lightly" [ref=e15] [cursor=pointer]:
+        - /url: https://github.com/lightly-ai/lightly
+      - text: .
+    - generic [ref=e16]:
+      - heading "Latest Posts" [level=2] [ref=e17]
+      - list [ref=e18]:
+        - listitem [ref=e19]:
+          - link "Why IoU Loss Beats L1 in Object Detection Feb 1, 2026" [ref=e20] [cursor=pointer]:
+            - /url: /portfolio/blog/why_iou_beats_l1
+            - text: Why IoU Loss Beats L1 in Object Detection
+            - time [ref=e21]: Feb 1, 2026
+          - paragraph [ref=e22]: Why IoU based loss functions perform better than L1 loss in object detection.
+      - paragraph [ref=e23]:
+        - link "Read all posts →" [ref=e24] [cursor=pointer]:
+          - /url: /portfolio/blog

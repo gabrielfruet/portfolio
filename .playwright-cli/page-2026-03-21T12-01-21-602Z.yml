@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /portfolio
+      - link "Blog" [ref=e5] [cursor=pointer]:
+        - /url: /portfolio/blog
+      - link "Projects" [ref=e6] [cursor=pointer]:
+        - /url: /portfolio/projects
+      - link "Papers" [ref=e7] [cursor=pointer]:
+        - /url: /portfolio/papers
+    - generic [ref=e8]:
+      - link "GitHub" [ref=e9] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet
+      - link "LinkedIn" [ref=e10] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/gabriel-fruet/
+  - main [ref=e11]:
+    - heading "Hi, I'm Gabriel." [level=1] [ref=e12]
+    - generic [ref=e13]:
+      - paragraph [ref=e14]: I am a Computer Vision Engineer working on LiDAR perception and autonomous systems. I write about machine learning, computer vision, and the intersection of research and engineering.
+      - paragraph [ref=e15]:
+        - text: I contribute to
+        - link "PyTorch Ignite" [ref=e16] [cursor=pointer]:
+          - /url: https://github.com/pytorch/ignite
+        - text: and
+        - link "Lightly" [ref=e17] [cursor=pointer]:
+          - /url: https://github.com/lightly-ai/lightly
+        - text: .
+    - generic [ref=e18]:
+      - heading "Latest Posts" [level=2] [ref=e19]
+      - list [ref=e20]:
+        - listitem [ref=e21]:
+          - link "Why IoU Loss Beats L1 in Object Detection Feb 1, 2026 Why IoU based loss functions perform better than L1 loss in object detection." [ref=e22] [cursor=pointer]:
+            - /url: /portfolio/blog/why_iou_beats_l1
+            - generic [ref=e23]:
+              - heading "Why IoU Loss Beats L1 in Object Detection" [level=3] [ref=e24]
+              - time [ref=e25]: Feb 1, 2026
+            - paragraph [ref=e26]: Why IoU based loss functions perform better than L1 loss in object detection.
+      - link "Read all posts →" [ref=e28] [cursor=pointer]:
+        - /url: /portfolio/blog
+  - generic [ref=e31]:
+    - button "Menu" [ref=e32]:
+      - img [ref=e34]
+      - generic: Menu
+    - button "Inspect" [ref=e38]:
+      - img [ref=e40]
+      - generic: Inspect
+    - button "Audit" [ref=e42]:
+      - img [ref=e44]
+      - generic: Audit
+    - button "Settings" [ref=e47]:
+      - img [ref=e49]
+      - generic: Settings

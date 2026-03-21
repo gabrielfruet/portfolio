@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /portfolio
+      - link "Blog" [ref=e5] [cursor=pointer]:
+        - /url: /portfolio/blog
+      - link "Projects" [ref=e6] [cursor=pointer]:
+        - /url: /portfolio/projects
+      - link "Papers" [ref=e7] [cursor=pointer]:
+        - /url: /portfolio/papers
+    - generic [ref=e8]:
+      - link "GitHub" [ref=e9] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet
+      - link "LinkedIn" [ref=e10] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/gabriel-fruet/
+  - main [ref=e11]:
+    - heading "Papers" [level=1] [ref=e12]
+    - generic [ref=e13]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - 'heading "ApisFlow: a Real-Time Automated Tool to Detect, Classify and Count Honey Bees Castes at the Hive Entrance" [level=3] [ref=e17]'
+          - link "[PDF] ↗" [ref=e18] [cursor=pointer]:
+            - /url: https://doi.org/10.5753/wcama.2023.230583
+        - generic [ref=e19]: Gabriel Vasconcelos Fruet, Isac Gabriel Abrahão Bomfim, Rafael Capelo Domingues, Antonio Rafael Braga, Danielo G. Gomes
+        - generic [ref=e20]:
+          - generic [ref=e21]: WCAMA
+          - generic [ref=e22]: ·
+          - generic [ref=e23]: "2023"
+        - paragraph [ref=e24]: ApisFlow is a real-time object-tracking framework for automatically detecting, tracking, classifying and counting the flow of honey bee castes at the hive entrance.
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - heading "Imagens de Raios X e YOLOv8 para Avaliação Automatizada, Precisa e Não Destrutiva da Qualidade de Sementes Braquiária (Urochloa brizantha)" [level=3] [ref=e28]
+          - link "[PDF] ↗" [ref=e29] [cursor=pointer]:
+            - /url: https://sol.sbc.org.br/index.php/sbiagro/article/view/26555
+        - generic [ref=e30]: Rafael Capelo Domingues, Gabriel Vasconcelos Fruet, Haynna Fernandes Abud, Danielo G. Gomes
+        - generic [ref=e31]:
+          - generic [ref=e32]: SBIAGRO
+          - generic [ref=e33]: ·
+          - generic [ref=e34]: "2023"
+  - generic [ref=e37]:
+    - button "Menu" [ref=e38]:
+      - img [ref=e40]
+      - generic: Menu
+    - button "Inspect" [ref=e44]:
+      - img [ref=e46]
+      - generic: Inspect
+    - button "Audit" [ref=e48]:
+      - img [ref=e50]
+      - generic: Audit
+    - button "Settings" [ref=e53]:
+      - img [ref=e55]
+      - generic: Settings

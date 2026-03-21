@@ -1,0 +1,50 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /portfolio
+      - text: ·
+      - link "Blog" [ref=e5] [cursor=pointer]:
+        - /url: /portfolio/blog
+      - text: ·
+      - link "Projects" [ref=e6] [cursor=pointer]:
+        - /url: /portfolio/projects
+      - text: ·
+      - link "Papers" [ref=e7] [cursor=pointer]:
+        - /url: /portfolio/papers
+      - text: ·
+      - link "GitHub" [ref=e8] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet
+      - text: ·
+      - link "LinkedIn" [ref=e9] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/gabriel-fruet/
+  - main [ref=e10]:
+    - heading "Papers" [level=1] [ref=e11]
+    - article [ref=e12]:
+      - 'heading "ApisFlow: a Real-Time Automated Tool to Detect, Classify and Count Honey Bees Castes at the Hive Entrance" [level=3] [ref=e13]'
+      - paragraph [ref=e14]: Gabriel Vasconcelos Fruet, Isac Gabriel Abrahão Bomfim, Rafael Capelo Domingues, Antonio Rafael Braga, Danielo G. Gomes
+      - paragraph [ref=e15]:
+        - text: WCAMA · 2023 ·
+        - link "[PDF]" [ref=e16] [cursor=pointer]:
+          - /url: https://doi.org/10.5753/wcama.2023.230583
+      - paragraph [ref=e17]: ApisFlow is a real-time object-tracking framework for automatically detecting, tracking, classifying and counting the flow of honey bee castes at the hive entrance.
+    - article [ref=e18]:
+      - heading "Imagens de Raios X e YOLOv8 para Avaliação Automatizada, Precisa e Não Destrutiva da Qualidade de Sementes Braquiária (Urochloa brizantha)" [level=3] [ref=e19]
+      - paragraph [ref=e20]: Rafael Capelo Domingues, Gabriel Vasconcelos Fruet, Haynna Fernandes Abud, Danielo G. Gomes
+      - paragraph [ref=e21]:
+        - text: SBIAGRO · 2023 ·
+        - link "[PDF]" [ref=e22] [cursor=pointer]:
+          - /url: https://sol.sbc.org.br/index.php/sbiagro/article/view/26555
+  - generic [ref=e25]:
+    - button "Menu" [ref=e26]:
+      - img [ref=e28]
+      - generic: Menu
+    - button "Inspect" [ref=e32]:
+      - img [ref=e34]
+      - generic: Inspect
+    - button "Audit" [ref=e36]:
+      - img [ref=e38]
+      - generic: Audit
+    - button "Settings" [ref=e41]:
+      - img [ref=e43]
+      - generic: Settings

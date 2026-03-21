@@ -1,0 +1,50 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /portfolio
+      - link "Blog" [ref=e5] [cursor=pointer]:
+        - /url: /portfolio/blog
+      - link "Projects" [ref=e6] [cursor=pointer]:
+        - /url: /portfolio/projects
+      - link "Papers" [ref=e7] [cursor=pointer]:
+        - /url: /portfolio/papers
+    - generic [ref=e8]:
+      - link "GitHub" [ref=e9] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet
+      - link "LinkedIn" [ref=e10] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/gabriel-fruet/
+  - main [ref=e11]:
+    - heading "Projects" [level=1] [ref=e12]
+    - article [ref=e15]:
+      - link "CUDA Voxelization for PyTorch" [ref=e16] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet/cuda-voxelization-torch
+        - heading "CUDA Voxelization for PyTorch" [level=2] [ref=e17]
+      - paragraph [ref=e18]: A fast voxelization implementation for PyTorch using CUDA.
+      - paragraph [ref=e19]: C++ · CUDA · PyTorch
+    - generic [ref=e20]:
+      - heading "Open Source Contributions" [level=2] [ref=e21]
+      - generic [ref=e22]:
+        - article [ref=e23]:
+          - link "PyTorch Ignite" [ref=e24] [cursor=pointer]:
+            - /url: https://github.com/pytorch/ignite
+            - heading "PyTorch Ignite" [level=2] [ref=e25]
+          - paragraph [ref=e26]: Contributed to PyTorch Ignite, with focus on improving the metrics and logging API.
+        - article [ref=e27]:
+          - link "Lightly" [ref=e28] [cursor=pointer]:
+            - /url: https://github.com/lightly-ai/lightly
+            - heading "Lightly" [level=2] [ref=e29]
+          - paragraph [ref=e30]: Contributed to Lightly, implementing novel Self-supervised learning methods like SparK.
+  - generic [ref=e33]:
+    - button "Menu" [ref=e34]:
+      - img [ref=e36]
+      - generic: Menu
+    - button "Inspect" [ref=e40]:
+      - img [ref=e42]
+      - generic: Inspect
+    - button "Audit" [ref=e44]:
+      - img [ref=e46]
+      - generic: Audit
+    - button "Settings" [ref=e49]:
+      - img [ref=e51]
+      - generic: Settings

@@ -1,0 +1,261 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "Home" [ref=e4] [cursor=pointer]:
+        - /url: /portfolio
+      - text: ·
+      - link "Blog" [ref=e5] [cursor=pointer]:
+        - /url: /portfolio/blog
+      - text: ·
+      - link "Projects" [ref=e6] [cursor=pointer]:
+        - /url: /portfolio/projects
+      - text: ·
+      - link "Papers" [ref=e7] [cursor=pointer]:
+        - /url: /portfolio/papers
+      - text: ·
+      - link "GitHub" [ref=e8] [cursor=pointer]:
+        - /url: https://github.com/gabrielfruet
+      - text: ·
+      - link "LinkedIn" [ref=e9] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/gabriel-fruet/
+  - main [ref=e10]:
+    - article [ref=e11]:
+      - generic [ref=e12]:
+        - heading "Why IoU Loss Beats L1 in Object Detection" [level=1] [ref=e13]
+        - paragraph [ref=e14]:
+          - time [ref=e15]: February 1, 2026
+          - text: "/ #deep-learning#object-detection#loss-function"
+      - heading "Why do we need IoU based loss functions?" [level=1] [ref=e16]
+      - paragraph [ref=e17]: "A question that may arise when entering the world of object detection is: Why do IoU-based loss functions perform better than L1 loss?"
+      - paragraph [ref=e18]: Intuitively, we generally think of object detection as purely a regression problem. So, if we minimize the difference (e.g., L1 or L2 loss) between the predicted and the ground truth bounding boxes, we should get a good model.
+      - paragraph [ref=e19]:
+        - text: This is partially true, but not entirely. Since we evaluate the model using metrics such as mAP, we want to minimize the difference between the predicted and the ground truth bounding box in terms of IoU. In general, the L1 loss
+        - strong [ref=e20]: does
+        - text: that, but not directly.
+      - heading "Loss landscape" [level=1] [ref=e21]
+      - paragraph [ref=e22]: When training a model, we aim to minimize the loss function. We can visualize our model as a “point” in the loss landscape, which we want to move to the global minimum. This movement is entirely dependent on how the gradient behaves in the neighborhood of the current point.
+      - paragraph [ref=e23]: Simply put, the shape of the loss landscape determines how the model learns.
+      - heading "The ball example" [level=2] [ref=e24]
+      - paragraph [ref=e25]: Think of our model as a ball in a landscape. We want it to roll to the lowest point.
+      - paragraph [ref=e26]: If the terrain is smooth and sloped (good gradients), the ball rolls naturally to the bottom—just like how optimizers (SGD, Adam) follow the slope. If the terrain is flat, the ball stops moving.
+      - 'figure "Figure 1: Loss Landscape" [ref=e27]':
+        - 'img "Figure 1: Loss Landscape" [ref=e28]'
+        - generic [ref=e29]: "Figure 1: Loss Landscape"
+        - link "Source" [ref=e30] [cursor=pointer]:
+          - /url: https://science.sciencemag.org/content/360/6388/478/tab-figures-data
+      - heading "L1 Loss" [level=1] [ref=e31]
+      - paragraph [ref=e32]: One of the simplest loss functions used for object detection is the L1 loss. Here, we only minimize the difference between the predicted and ground truth bounding boxes in terms of XY coordinates, not width and height (WH), to allow for visualization on a 2D plane.
+      - 'figure "Figure 2: L1 Loss Landscape" [ref=e33]':
+        - 'img "Figure 2: L1 Loss Landscape" [ref=e34]'
+        - generic [ref=e35]: "Figure 2: L1 Loss Landscape"
+      - paragraph [ref=e36]: As we can see, the L1 loss landscape is very smooth, with the gradient always pointing toward the minimum. However, the loss is quite “flat”, so the ball will roll down very consistently to find the minimum.
+      - heading "IoU Loss" [level=1] [ref=e37]
+      - paragraph [ref=e38]:
+        - text: The IoU loss is defined as
+        - generic [ref=e39]:
+          - math [ref=e41]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: "1"
+              - generic [ref=e45]: −
+              - generic [ref=e46]: I
+              - generic [ref=e47]: o
+              - generic [ref=e48]: U
+          - generic [ref=e49]:
+            - generic [ref=e50]: 1−
+            - generic [ref=e51]: IoU
+        - text: . It is not widely used, but serves as a good starting point for understanding the problem.
+      - 'figure "Figure 3: IoU Loss Landscape" [ref=e52]':
+        - 'img "Figure 3: IoU Loss Landscape" [ref=e53]'
+        - generic [ref=e54]: "Figure 3: IoU Loss Landscape"
+      - paragraph [ref=e55]: "Here’s the problem: The landscape is flat almost everywhere."
+      - paragraph [ref=e56]:
+        - text: If the boxes don’t overlap, IoU is 0, and the loss is 1. Since the value is constant, the
+        - strong [ref=e57]: gradient is zero
+        - text: .
+      - paragraph [ref=e58]:
+        - text: The model is blind. It knows it’s wrong, but it doesn’t know
+        - emphasis [ref=e59]: which way
+        - text: to move to fix it.
+      - blockquote [ref=e60]:
+        - paragraph [ref=e61]: The IoU of non-overlapping boxes is 0.
+      - paragraph [ref=e62]: "We need a loss function that says:"
+      - blockquote [ref=e63]:
+        - paragraph [ref=e64]:
+          - text: Hey, I know you aren’t overlapping the ground truth yet, but go
+          - emphasis [ref=e65]: this
+          - text: way and you’ll find it.
+      - paragraph [ref=e66]: And that’s what GIoU, DIoU, and CIoU loss functions do.
+      - heading "Complete IoU Loss" [level=1] [ref=e67]
+      - paragraph [ref=e68]:
+        - text: This was initially proposed in the paper
+        - link "Enhancing Geometric Factors in Model Learning and Inference for Object Detection and Instance Segmentation" [ref=e69] [cursor=pointer]:
+          - /url: https://arxiv.org/pdf/2005.03572
+        - text: .
+      - paragraph [ref=e70]: "It is defined as a sum of three penalties:"
+      - generic [ref=e72]:
+        - math [ref=e74]:
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - generic [ref=e78]: L
+              - generic [ref=e79]:
+                - generic [ref=e80]: C
+                - generic [ref=e81]: I
+                - generic [ref=e82]: o
+                - generic [ref=e83]: U
+            - generic [ref=e84]: =
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - generic [ref=e88]: "1"
+                  - generic [ref=e89]: −
+                  - generic [ref=e90]: I
+                  - generic [ref=e91]: o
+                  - generic [ref=e92]: U
+                - generic [ref=e93]: ⏟
+              - generic [ref=e94]: Overlap
+            - generic [ref=e95]: +
+            - generic [ref=e96]:
+              - generic [ref=e97]:
+                - generic [ref=e98]:
+                  - generic [ref=e99]:
+                    - generic [ref=e100]:
+                      - generic [ref=e101]: ρ
+                      - generic [ref=e102]: "2"
+                    - generic [ref=e103]: (
+                    - generic [ref=e104]: b
+                    - generic [ref=e105]: ","
+                    - generic [ref=e106]:
+                      - generic [ref=e107]: b
+                      - generic [ref=e108]:
+                        - generic [ref=e109]: g
+                        - generic [ref=e110]: t
+                    - generic [ref=e111]: )
+                  - generic [ref=e112]:
+                    - generic [ref=e113]: c
+                    - generic [ref=e114]: "2"
+                - generic [ref=e115]: ⏟
+              - generic [ref=e116]: Distance
+            - generic [ref=e117]: +
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - generic [ref=e120]:
+                  - generic [ref=e121]: α
+                  - generic [ref=e122]: v
+                - generic [ref=e123]: ⏟
+              - generic [ref=e124]: Aspect Ratio
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - text: L
+              - generic [ref=e134]: CIoU
+            - text: =
+          - generic [ref=e135]:
+            - generic [ref=e139]:
+              - generic [ref=e143]: Overlap
+              - generic [ref=e148]:
+                - generic [ref=e150]:
+                  - img [ref=e152]
+                  - img [ref=e155]
+                  - img [ref=e158]
+                - generic [ref=e161]: 1−IoU
+            - text: +
+          - generic [ref=e162]:
+            - generic [ref=e166]:
+              - generic [ref=e170]: Distance
+              - generic [ref=e175]:
+                - generic [ref=e177]:
+                  - img [ref=e179]
+                  - img [ref=e182]
+                  - img [ref=e185]
+                - generic [ref=e193]:
+                  - generic [ref=e196]:
+                    - text: c
+                    - generic [ref=e202]: "2"
+                  - generic [ref=e204]:
+                    - generic [ref=e205]:
+                      - text: ρ
+                      - generic [ref=e211]: "2"
+                    - text: (b,
+                    - generic [ref=e212]:
+                      - text: b
+                      - generic [ref=e219]: gt
+                    - text: )
+            - text: +
+          - generic [ref=e224]:
+            - generic [ref=e228]: Aspect Ratio
+            - generic [ref=e233]:
+              - generic [ref=e235]:
+                - img [ref=e237]
+                - img [ref=e240]
+                - img [ref=e243]
+              - generic [ref=e246]: αv
+      - paragraph [ref=e247]: "Where:"
+      - list [ref=e248]:
+        - listitem [ref=e249]: "Overlap: The standard IoU term."
+        - listitem [ref=e250]:
+          - text: "Distance:"
+          - generic [ref=e251]:
+            - math [ref=e253]:
+              - generic [ref=e256]:
+                - generic [ref=e257]: ρ
+                - generic [ref=e258]: "2"
+            - generic [ref=e261]:
+              - text: ρ
+              - generic [ref=e267]: "2"
+          - text: is the distance between center points, and
+          - generic [ref=e268]:
+            - math [ref=e270]:
+              - generic [ref=e273]: c
+            - generic [ref=e275]: c
+          - text: is the diagonal of the enclosing box.
+        - listitem [ref=e276]:
+          - text: "Aspect Ratio:"
+          - generic [ref=e277]:
+            - math [ref=e279]:
+              - generic [ref=e281]:
+                - generic [ref=e282]: α
+                - generic [ref=e283]: v
+            - generic [ref=e285]: αv
+          - text: measures if the width/height ratio is consistent.
+      - paragraph [ref=e286]: The CIoU loss landscape is very smooth, and the gradient always points toward the minimum.
+      - 'figure "Figure 4: CIoU Loss Landscape" [ref=e287]':
+        - 'img "Figure 4: CIoU Loss Landscape" [ref=e288]'
+        - generic [ref=e289]: "Figure 4: CIoU Loss Landscape"
+      - heading "Metric Correlation" [level=1] [ref=e290]
+      - paragraph [ref=e291]: Theory is nice, but does it work?
+      - paragraph [ref=e292]:
+        - text: Since we evaluate using IoU, we want our loss function to follow it closely. When loss goes
+        - strong [ref=e293]: down
+        - text: ", IoU should go"
+        - strong [ref=e294]: up
+        - text: .
+      - generic [ref=e295]:
+        - 'figure "Figure 5: L1 Loss vs IoU Correlation" [ref=e296]':
+          - 'img "Figure 5: L1 Loss vs IoU Correlation" [ref=e297]'
+          - generic [ref=e298]: "Figure 5: L1 Loss vs IoU Correlation"
+        - 'figure "Figure 6: CIoU Loss vs IoU Correlation" [ref=e299]':
+          - 'img "Figure 6: CIoU Loss vs IoU Correlation" [ref=e300]'
+          - generic [ref=e301]: "Figure 6: CIoU Loss vs IoU Correlation"
+      - paragraph [ref=e302]: The difference is clear.
+      - list [ref=e303]:
+        - listitem [ref=e304]: "L1 Loss (Left): It’s messy. For the same IoU (e.g., 0.4), the loss can be anywhere from 15 to 30."
+        - listitem [ref=e305]: "CIoU Loss (Right): It’s a tight curve. A specific loss value almost guarantees a specific IoU."
+      - heading "Conclusion" [level=1] [ref=e306]
+      - paragraph [ref=e307]: While L1 loss is simple, it doesn’t align well with how we evaluate detection quality.
+      - paragraph [ref=e308]:
+        - text: IoU-based losses, especially
+        - strong [ref=e309]: CIoU
+        - text: ", bridge that gap. By accounting for overlap, distance, and aspect ratio, they give the model a clear signal on how to improve—even when boxes don’t overlap initially."
+  - generic [ref=e312]:
+    - button "Menu" [ref=e313]:
+      - img [ref=e315]
+      - generic: Menu
+    - button "Inspect" [ref=e319]:
+      - img [ref=e321]
+      - generic: Inspect
+    - button "Audit" [ref=e323]:
+      - img [ref=e325]
+      - generic: Audit
+    - button "Settings" [ref=e328]:
+      - img [ref=e330]
+      - generic: Settings

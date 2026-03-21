@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    /* Warm earth-tone dark theme - digital garden aesthetic */
+    /* Warm earth-tone dark theme - minimal aesthetic */
     --color-background: #1A1815;
     --color-foreground: #E8E4DC;
     --color-muted: #8A857C;
@@ -13,32 +13,18 @@
     body {
         background-color: var(--color-background);
         color: var(--color-foreground);
-        font-family: -apple-system, BlinkMacSystemFont, "Inter", "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
-        font-size: 1.125rem;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 16px;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Serif for headers - academic, thoughtful */
+    /* Clean sans-serif for all headings */
     h1, h2, h3, h4, h5, h6 {
-        font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
         font-weight: 500;
-        letter-spacing: -0.01em;
-        line-height: 1.3;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-        font-weight: 400;
-    }
-
-    h2 {
-        font-size: 1.75rem;
-    }
-
-    h3 {
-        font-size: 1.375rem;
+        letter-spacing: -0.015em;
+        line-height: 1.25;
     }
 }
 

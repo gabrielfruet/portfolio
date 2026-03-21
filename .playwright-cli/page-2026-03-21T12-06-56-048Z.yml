@@ -1,0 +1,394 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "Steph Ango" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e5]:
+      - link "About" [ref=e6] [cursor=pointer]:
+        - /url: /about
+      - link "Now" [ref=e7] [cursor=pointer]:
+        - /url: /now
+    - switch "Toggle dark mode" [ref=e8] [cursor=pointer]
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - paragraph [ref=e13]:
+        - link "Latest" [ref=e14] [cursor=pointer]:
+          - /url: /saw
+      - link "Use the saw, fear the saw October 20, 2025 · 1 minute read It’s hard to make a saw that cuts trees but not arms. Keep reading →" [ref=e16] [cursor=pointer]:
+        - /url: /saw
+        - heading "Use the saw, fear the saw" [level=2] [ref=e17]
+        - generic [ref=e18]:
+          - time [ref=e19]: October 20, 2025
+          - text: · 1 minute read
+        - generic [ref=e20]: It’s hard to make a saw that cuts trees but not arms. Keep reading →
+      - separator [ref=e21]
+      - paragraph [ref=e22]:
+        - link "Topics" [ref=e23] [cursor=pointer]:
+          - /url: /topics
+      - generic [ref=e24]:
+        - link "advice" [ref=e25] [cursor=pointer]:
+          - /url: /topics/advice
+        - text: ","
+        - link "ai" [ref=e26] [cursor=pointer]:
+          - /url: /topics/ai
+        - text: ","
+        - link "competition" [ref=e27] [cursor=pointer]:
+          - /url: /topics/competition
+        - text: ","
+        - link "defaults" [ref=e28] [cursor=pointer]:
+          - /url: /topics/defaults
+        - text: ","
+        - link "design" [ref=e29] [cursor=pointer]:
+          - /url: /topics/design
+        - text: ","
+        - link "empathy" [ref=e30] [cursor=pointer]:
+          - /url: /topics/empathy
+        - text: ","
+        - link "evergreen" [ref=e31] [cursor=pointer]:
+          - /url: /topics/evergreen
+        - text: ","
+        - link "friendship" [ref=e32] [cursor=pointer]:
+          - /url: /topics/friendship
+        - text: ","
+        - link "habits" [ref=e33] [cursor=pointer]:
+          - /url: /topics/habits
+        - text: ","
+        - link "hardware" [ref=e34] [cursor=pointer]:
+          - /url: /topics/hardware
+        - text: ","
+        - link "humanism" [ref=e35] [cursor=pointer]:
+          - /url: /topics/humanism
+        - text: ","
+        - link "ideas" [ref=e36] [cursor=pointer]:
+          - /url: /topics/ideas
+        - text: ","
+        - link "learning" [ref=e37] [cursor=pointer]:
+          - /url: /topics/learning
+        - text: ","
+        - link "leverage" [ref=e38] [cursor=pointer]:
+          - /url: /topics/leverage
+        - text: ","
+        - link "love" [ref=e39] [cursor=pointer]:
+          - /url: /topics/love
+        - text: ","
+        - link "manufacturing" [ref=e40] [cursor=pointer]:
+          - /url: /topics/manufacturing
+        - text: ","
+        - link "media" [ref=e41] [cursor=pointer]:
+          - /url: /topics/media
+        - text: ","
+        - link "minimalism" [ref=e42] [cursor=pointer]:
+          - /url: /topics/minimalism
+        - text: ","
+        - link "money" [ref=e43] [cursor=pointer]:
+          - /url: /topics/money
+        - text: ","
+        - link "obsidian" [ref=e44] [cursor=pointer]:
+          - /url: /topics/obsidian
+        - text: ","
+        - link "packaging" [ref=e45] [cursor=pointer]:
+          - /url: /topics/packaging
+        - text: ","
+        - link "perfectionism" [ref=e46] [cursor=pointer]:
+          - /url: /topics/perfectionism
+        - text: ","
+        - link "popular" [ref=e47] [cursor=pointer]:
+          - /url: /topics/popular
+        - text: ","
+        - link "projects" [ref=e48] [cursor=pointer]:
+          - /url: /topics/projects
+        - text: ","
+        - link "rituals" [ref=e49] [cursor=pointer]:
+          - /url: /topics/rituals
+        - text: ","
+        - link "startups" [ref=e50] [cursor=pointer]:
+          - /url: /topics/startups
+        - text: ","
+        - link "synthography" [ref=e51] [cursor=pointer]:
+          - /url: /topics/synthography
+        - text: ","
+        - link "teaching" [ref=e52] [cursor=pointer]:
+          - /url: /topics/teaching
+        - text: ","
+        - link "tools" [ref=e53] [cursor=pointer]:
+          - /url: /topics/tools
+        - text: ","
+        - link "writing" [ref=e54] [cursor=pointer]:
+          - /url: /topics/writing
+      - separator [ref=e55]
+      - paragraph [ref=e56]:
+        - link "Writing" [ref=e57] [cursor=pointer]:
+          - /url: /writing
+      - list [ref=e58]:
+        - listitem [ref=e59]:
+          - link "2025 · 10 Use the saw, fear the saw" [ref=e60] [cursor=pointer]:
+            - /url: /saw
+            - generic [ref=e61]:
+              - generic [ref=e62]: 2025 · 10
+              - generic [ref=e63]: Use the saw, fear the saw
+        - listitem [ref=e64]:
+          - link "2025 · 07 If you're remote, ramble" [ref=e65] [cursor=pointer]:
+            - /url: /ramblings
+            - generic [ref=e66]:
+              - generic [ref=e67]: 2025 · 07
+              - generic [ref=e68]: If you're remote, ramble
+        - listitem [ref=e69]:
+          - link "2024 · 12 Self-guaranteeing promises" [ref=e70] [cursor=pointer]:
+            - /url: /self-guarantee
+            - generic [ref=e71]:
+              - generic [ref=e72]: 2024 · 12
+              - generic [ref=e73]: Self-guaranteeing promises
+        - listitem [ref=e74]:
+          - link "2024 · 06 What can we remove?" [ref=e75] [cursor=pointer]:
+            - /url: /remove
+            - generic [ref=e76]:
+              - generic [ref=e77]: 2024 · 06
+              - generic [ref=e78]: What can we remove?
+        - listitem [ref=e79]:
+          - link "2024 · 05 Love is freedom" [ref=e80] [cursor=pointer]:
+            - /url: /love
+            - generic [ref=e81]:
+              - generic [ref=e82]: 2024 · 05
+              - generic [ref=e83]: Love is freedom
+        - listitem [ref=e84]:
+          - link "2024 · 02 Earth is becoming sentient" [ref=e85] [cursor=pointer]:
+            - /url: /earth
+            - generic [ref=e86]:
+              - generic [ref=e87]: 2024 · 02
+              - generic [ref=e88]: Earth is becoming sentient
+        - listitem [ref=e89]:
+          - link "2024 · 02 100% user-supported" [ref=e90] [cursor=pointer]:
+            - /url: /vcware
+            - generic [ref=e91]:
+              - generic [ref=e92]: 2024 · 02
+              - generic [ref=e93]: 100% user-supported
+        - listitem [ref=e94]:
+          - link "2023 · 12 Choose optimism" [ref=e95] [cursor=pointer]:
+            - /url: /optimism
+            - generic [ref=e96]:
+              - generic [ref=e97]: 2023 · 12
+              - generic [ref=e98]: Choose optimism
+        - listitem [ref=e99]:
+          - link "2023 · 11 Pain is information" [ref=e100] [cursor=pointer]:
+            - /url: /pain
+            - generic [ref=e101]:
+              - generic [ref=e102]: 2023 · 11
+              - generic [ref=e103]: Pain is information
+        - listitem [ref=e104]:
+          - link "2023 · 10 Quality software deserves your hard‑earned cash" [ref=e105] [cursor=pointer]:
+            - /url: /quality-software
+            - generic [ref=e106]:
+              - generic [ref=e107]: 2023 · 10
+              - generic [ref=e108]: Quality software deserves your hard‑earned cash
+        - listitem [ref=e109]:
+          - link "2023 · 09 Buy wisely" [ref=e110] [cursor=pointer]:
+            - /url: /buy-wisely
+            - generic [ref=e111]:
+              - generic [ref=e112]: 2023 · 09
+              - generic [ref=e113]: Buy wisely
+        - listitem [ref=e114]:
+          - link "2023 · 09 How I use Obsidian" [ref=e115] [cursor=pointer]:
+            - /url: /vault
+            - generic [ref=e116]:
+              - generic [ref=e117]: 2023 · 09
+              - generic [ref=e118]: How I use Obsidian
+        - listitem [ref=e119]:
+          - link "2023 · 09 Style is consistent constraint" [ref=e120] [cursor=pointer]:
+            - /url: /style
+            - generic [ref=e121]:
+              - generic [ref=e122]: 2023 · 09
+              - generic [ref=e123]: Style is consistent constraint
+        - listitem [ref=e124]:
+          - link "2023 · 08 Concise explanations accelerate progress" [ref=e125] [cursor=pointer]:
+            - /url: /concise
+            - generic [ref=e126]:
+              - generic [ref=e127]: 2023 · 08
+              - generic [ref=e128]: Concise explanations accelerate progress
+        - listitem [ref=e129]:
+          - link "2023 · 08 Don't delegate understanding" [ref=e130] [cursor=pointer]:
+            - /url: /understand
+            - generic [ref=e131]:
+              - generic [ref=e132]: 2023 · 08
+              - generic [ref=e133]: Don't delegate understanding
+        - listitem [ref=e134]:
+          - link "2023 · 08 In good hands" [ref=e135] [cursor=pointer]:
+            - /url: /in-good-hands
+            - generic [ref=e136]:
+              - generic [ref=e137]: 2023 · 08
+              - generic [ref=e138]: In good hands
+        - listitem [ref=e139]:
+          - link "2023 · 07 Caloric energy is precious" [ref=e140] [cursor=pointer]:
+            - /url: /precious
+            - generic [ref=e141]:
+              - generic [ref=e142]: 2023 · 07
+              - generic [ref=e143]: Caloric energy is precious
+        - listitem [ref=e144]:
+          - link "2023 · 07 Nibble and your appetite will grow" [ref=e145] [cursor=pointer]:
+            - /url: /nibble
+            - generic [ref=e146]:
+              - generic [ref=e147]: 2023 · 07
+              - generic [ref=e148]: Nibble and your appetite will grow
+        - listitem [ref=e149]:
+          - link "2023 · 07 File over app" [ref=e150] [cursor=pointer]:
+            - /url: /file-over-app
+            - generic [ref=e151]:
+              - generic [ref=e152]: 2023 · 07
+              - generic [ref=e153]: File over app
+        - listitem [ref=e154]:
+          - link "2023 · 06 A bicycle for the senses" [ref=e155] [cursor=pointer]:
+            - /url: /bicycle-for-the-senses
+            - generic [ref=e156]:
+              - generic [ref=e157]: 2023 · 06
+              - generic [ref=e158]: A bicycle for the senses
+        - listitem [ref=e159]:
+          - link "2023 · 06 Black pixels" [ref=e160] [cursor=pointer]:
+            - /url: /black-pixels
+            - generic [ref=e161]:
+              - generic [ref=e162]: 2023 · 06
+              - generic [ref=e163]: Black pixels
+        - listitem [ref=e164]:
+          - link "2023 · 05 How I do my to-dos" [ref=e165] [cursor=pointer]:
+            - /url: /todos
+            - generic [ref=e166]:
+              - generic [ref=e167]: 2023 · 05
+              - generic [ref=e168]: How I do my to-dos
+        - listitem [ref=e169]:
+          - link "2022 · 11 Great tools choose to be bad at some things" [ref=e170] [cursor=pointer]:
+            - /url: /choose-to-be-bad
+            - generic [ref=e171]:
+              - generic [ref=e172]: 2022 · 11
+              - generic [ref=e173]: Great tools choose to be bad at some things
+        - listitem [ref=e174]:
+          - link "2022 · 10 Don't specialize, hybridize" [ref=e175] [cursor=pointer]:
+            - /url: /hybridize
+            - generic [ref=e176]:
+              - generic [ref=e177]: 2022 · 10
+              - generic [ref=e178]: Don't specialize, hybridize
+        - listitem [ref=e179]:
+          - link "2022 · 10 Photoshop for text" [ref=e180] [cursor=pointer]:
+            - /url: /photoshop-for-text
+            - generic [ref=e181]:
+              - generic [ref=e182]: 2022 · 10
+              - generic [ref=e183]: Photoshop for text
+        - listitem [ref=e184]:
+          - link "2022 · 10 Calmness is a superpower" [ref=e185] [cursor=pointer]:
+            - /url: /calmness
+            - generic [ref=e186]:
+              - generic [ref=e187]: 2022 · 10
+              - generic [ref=e188]: Calmness is a superpower
+        - listitem [ref=e189]:
+          - link "2022 · 09 Evergreen notes turn ideas into objects that you can manipulate" [ref=e190] [cursor=pointer]:
+            - /url: /evergreen-notes
+            - generic [ref=e191]:
+              - generic [ref=e192]: 2022 · 09
+              - generic [ref=e193]: Evergreen notes turn ideas into objects that you can manipulate
+        - listitem [ref=e194]:
+          - link "2022 · 07 A camera for ideas" [ref=e195] [cursor=pointer]:
+            - /url: /synthography
+            - generic [ref=e196]:
+              - generic [ref=e197]: 2022 · 07
+              - generic [ref=e198]: A camera for ideas
+        - listitem [ref=e199]:
+          - link "2022 · 01 40 questions to ask yourself every decade" [ref=e200] [cursor=pointer]:
+            - /url: /40-questions-decade
+            - generic [ref=e201]:
+              - generic [ref=e202]: 2022 · 01
+              - generic [ref=e203]: 40 questions to ask yourself every decade
+        - listitem [ref=e204]:
+          - link "2020 · 04 Announcing Slash Packaging" [ref=e205] [cursor=pointer]:
+            - /url: /announcing-slash-packaging
+            - generic [ref=e206]:
+              - generic [ref=e207]: 2020 · 04
+              - generic [ref=e208]: Announcing Slash Packaging
+        - listitem [ref=e209]:
+          - link "2020 · 01 Stadium of selves" [ref=e210] [cursor=pointer]:
+            - /url: /stadium-of-selves
+            - generic [ref=e211]:
+              - generic [ref=e212]: 2020 · 01
+              - generic [ref=e213]: Stadium of selves
+        - listitem [ref=e214]:
+          - link "2019 · 12 The elusiveness of digital paper" [ref=e215] [cursor=pointer]:
+            - /url: /the-elusiveness-of-digital-paper
+            - generic [ref=e216]:
+              - generic [ref=e217]: 2019 · 12
+              - generic [ref=e218]: The elusiveness of digital paper
+        - listitem [ref=e219]:
+          - link "2018 · 12 Design is compromise" [ref=e220] [cursor=pointer]:
+            - /url: /design-is-compromise
+            - generic [ref=e221]:
+              - generic [ref=e222]: 2018 · 12
+              - generic [ref=e223]: Design is compromise
+        - listitem [ref=e224]:
+          - link "2018 · 09 Solving problem-finding" [ref=e225] [cursor=pointer]:
+            - /url: /solving-problem-finding
+            - generic [ref=e226]:
+              - generic [ref=e227]: 2018 · 09
+              - generic [ref=e228]: Solving problem-finding
+        - listitem [ref=e229]:
+          - link "2018 · 09 A little bit every day" [ref=e230] [cursor=pointer]:
+            - /url: /a-little-bit-every-day
+            - generic [ref=e231]:
+              - generic [ref=e232]: 2018 · 09
+              - generic [ref=e233]: A little bit every day
+        - listitem [ref=e234]:
+          - link "2016 · 10 40 questions to ask yourself every year" [ref=e235] [cursor=pointer]:
+            - /url: /40-questions
+            - generic [ref=e236]:
+              - generic [ref=e237]: 2016 · 10
+              - generic [ref=e238]: 40 questions to ask yourself every year
+        - listitem [ref=e239]:
+          - link "2015 · 11 Scars are beautiful" [ref=e240] [cursor=pointer]:
+            - /url: /scars
+            - generic [ref=e241]:
+              - generic [ref=e242]: 2015 · 11
+              - generic [ref=e243]: Scars are beautiful
+        - listitem [ref=e244]:
+          - link "2015 · 11 Default to empathy" [ref=e245] [cursor=pointer]:
+            - /url: /empathy
+            - generic [ref=e246]:
+              - generic [ref=e247]: 2015 · 11
+              - generic [ref=e248]: Default to empathy
+        - listitem [ref=e249]:
+          - link "2015 · 04 Every app is a superpower" [ref=e250] [cursor=pointer]:
+            - /url: /every-app-is-a-superpower
+            - generic [ref=e251]:
+              - generic [ref=e252]: 2015 · 04
+              - generic [ref=e253]: Every app is a superpower
+        - listitem [ref=e254]:
+          - link "2013 · 07 Be vanilla" [ref=e255] [cursor=pointer]:
+            - /url: /vanilla
+            - generic [ref=e256]:
+              - generic [ref=e257]: 2013 · 07
+              - generic [ref=e258]: Be vanilla
+        - listitem [ref=e259]:
+          - link "2013 · 04 Always learning, always teaching" [ref=e260] [cursor=pointer]:
+            - /url: /always-learning-always-teaching
+            - generic [ref=e261]:
+              - generic [ref=e262]: 2013 · 04
+              - generic [ref=e263]: Always learning, always teaching
+        - listitem [ref=e264]:
+          - link "2012 · 11 Agents of chaos" [ref=e265] [cursor=pointer]:
+            - /url: /agents-of-chaos
+            - generic [ref=e266]:
+              - generic [ref=e267]: 2012 · 11
+              - generic [ref=e268]: Agents of chaos
+  - contentinfo [ref=e269]:
+    - generic [ref=e270]:
+      - paragraph [ref=e271]:
+        - link "Receive my updates" [ref=e272] [cursor=pointer]:
+          - /url: /subscribe
+      - paragraph [ref=e273]:
+        - text: Follow me via email,
+        - link "RSS" [ref=e274] [cursor=pointer]:
+          - /url: /feed.xml
+        - text: ","
+        - link "Twitter" [ref=e275] [cursor=pointer]:
+          - /url: https://twitter.com/kepano
+        - text: ", and"
+        - link "other options" [ref=e276] [cursor=pointer]:
+          - /url: /subscribe
+      - generic [ref=e278]:
+        - textbox "Enter your email" [ref=e279]
+        - button "Sign up" [ref=e280]
+    - link "About me" [ref=e282] [cursor=pointer]:
+      - /url: /about
+      - img [ref=e283]
