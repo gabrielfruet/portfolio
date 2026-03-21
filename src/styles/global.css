@@ -20,10 +20,11 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Clean sans-serif for all headings */
+    /* Serif for headings - elegant, editorial feel */
     h1, h2, h3, h4, h5, h6 {
+        font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
         font-weight: 500;
-        letter-spacing: -0.015em;
+        letter-spacing: -0.01em;
         line-height: 1.25;
     }
 }
