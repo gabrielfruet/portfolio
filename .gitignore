@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# pi agent files
+.claude/
+.pi/
+
+# playwright
+.playwright/
+.playwright-cli/
