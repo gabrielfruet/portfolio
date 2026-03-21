@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SectionHeader from "../components/SectionHeader.astro";
 
 const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -29,47 +28,35 @@ const posts = (await getCollection("blog"))
     </div>
 
     <section>
-      <SectionHeader title="Latest Posts" />
+      <h2 class="text-base font-medium text-foreground mb-8">Latest Posts</h2>
       <ul class="space-y-0">
         {
           posts.map((post) => (
-            <li class="py-6 hover:bg-[#252220] rounded-lg px-3 -mx-3 transition-colors duration-200">
+            <li class="py-2">
               <a
                 href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
-                class="block"
+                class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
               >
-                <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                  <h3 class="text-xl font-medium text-foreground">
-                    {post.data.title}
-                  </h3>
-                  <time
-                    datetime={post.data.pubDate.toISOString()}
-                    class="text-sm text-muted whitespace-nowrap mt-1 sm:mt-0"
-                  >
-                    {post.data.pubDate.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </time>
-                </div>
-
-                <p class="text-muted text-base leading-relaxed">
-                  {post.data.description}
-                </p>
+                <span class="text-[13px] text-[#6e6a67] tabular-nums shrink-0">
+                  {post.data.pubDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                  })}
+                </span>
+                <span class="text-[15px] text-foreground group-hover:underline">
+                  {post.data.title}
+                </span>
               </a>
             </li>
           ))
         }
       </ul>
-      <div class="mt-8">
-        <a
-          href={`${import.meta.env.BASE_URL}/blog`}
-          class="text-base text-muted hover:text-accent hover:underline"
-        >
-          Read all posts →
-        </a>
-      </div>
+      <a
+        href={`${import.meta.env.BASE_URL}/blog`}
+        class="inline-block mt-6 text-sm text-[#6e6a67] hover:text-foreground transition-colors duration-150"
+      >
+        All posts →
+      </a>
     </section>
   </main>
 </BaseLayout>
