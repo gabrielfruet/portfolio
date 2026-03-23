@@ -23,13 +23,13 @@ const posts = (await getCollection("blog")).sort(
               href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
               class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
             >
-              <span class="text-[13px] text-[#928374] tabular-nums shrink-0">
+              <span class="text-[13px] text-[#575653] tabular-nums shrink-0">
                 {post.data.pubDate.toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
                 })}
               </span>
-              <span class="text-[15px] text-[#ebdbb2] group-hover:underline">
+              <span class="text-[15px] text-[#CECDC3] group-hover:underline">
                 {post.data.title}
               </span>
             </a>

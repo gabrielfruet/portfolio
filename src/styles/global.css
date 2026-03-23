@@ -86,11 +86,11 @@
 
     /* Styled blockquotes as callouts */
     .prose blockquote {
-        border-left: 2px solid #928374;
+        border-left: 2px solid #575653;
         padding-left: 1rem;
         margin-left: 0;
         margin-right: 0;
-        color: #a89984;
+        color: #878580;
         font-style: normal;
         background: transparent;
     }
