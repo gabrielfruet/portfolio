@@ -1,12 +1,14 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@theme {
-    /* Warm earth-tone dark theme - minimal aesthetic */
-    --color-background: #1A1815;
-    --color-foreground: #E8E4DC;
-    --color-muted: #8A857C;
-    --color-accent: #C4A77D;
+/* Flexoki Dark Palette - Centralized */
+:root {
+    --color-background: #100F0F;
+    --color-foreground: #CECDC3;
+    --color-muted: #878580;
+    --color-faint: #575653;
+    --color-divider: #282726;
+    --color-accent: #D4A855;
 }
 
 @layer base {
@@ -31,24 +33,24 @@
 
 @layer components {
     .prose {
-        --tw-prose-pre-bg: #1A1815;
-        --tw-prose-code: #E8E4DC;
-        --tw-prose-quote-borders: #3D3935;
-        --tw-prose-headings: #E8E4DC;
-        --tw-prose-body: #E8E4DC;
-        --tw-prose-links: #C4A77D;
-        --tw-prose-bold: #E8E4DC !important;
-        --tw-prose-counters: #8A857C;
-        --tw-prose-bullets: #8A857C;
-        --tw-prose-hr: #3D3935;
-        --tw-prose-quotes: #E8E4DC;
-        --tw-prose-th-borders: #3D3935;
-        --tw-prose-td-borders: #3D3935;
+        --tw-prose-pre-bg: #100F0F;
+        --tw-prose-code: #CECDC3;
+        --tw-prose-quote-borders: var(--color-faint);
+        --tw-prose-headings: #CECDC3;
+        --tw-prose-body: #CECDC3;
+        --tw-prose-links: var(--color-accent);
+        --tw-prose-bold: #CECDC3 !important;
+        --tw-prose-counters: #878580;
+        --tw-prose-bullets: #878580;
+        --tw-prose-hr: var(--color-divider);
+        --tw-prose-quotes: #CECDC3;
+        --tw-prose-th-borders: var(--color-faint);
+        --tw-prose-td-borders: var(--color-faint);
     }
 
     /* Override prose-invert defaults */
     .prose strong, .prose b {
-        color: #E8E4DC !important;
+        color: #CECDC3 !important;
     }
 
     .prose pre {
@@ -71,10 +73,10 @@
     }
 
     .prose :not(pre)>code {
-        background-color: #2A2722;
+        background-color: var(--color-divider);
         padding: 0.125rem 0.25rem;
         border-radius: 0.25rem;
-        color: #E8E4DC;
+        color: #CECDC3;
         font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", monospace;
         font-size: 0.875rem;
     }
@@ -86,7 +88,7 @@
 
     /* Styled blockquotes as callouts */
     .prose blockquote {
-        border-left: 2px solid #575653;
+        border-left: 2px solid var(--color-faint);
         padding-left: 1rem;
         margin-left: 0;
         margin-right: 0;

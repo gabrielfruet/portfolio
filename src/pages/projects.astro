@@ -45,14 +45,14 @@ const contributions = [
                 class="group block"
               >
                 <div class="flex items-baseline gap-3 mb-1">
-                  <span class="text-[16px] text-[#CECDC3] group-hover:underline">
+                  <span class="text-[16px] text-[var(--color-foreground)] group-hover:underline">
                     {project.title}
                   </span>
-                  <span class="text-[13px] text-[#575653]">
+                  <span class="text-[13px] text-[var(--color-faint)]">
                     {project.tech.join(" · ")}
                   </span>
                 </div>
-                <p class="text-[14px] text-[#575653] leading-relaxed max-w-[540px]">
+                <p class="text-[14px] text-[var(--color-faint)] leading-relaxed max-w-[540px]">
                   {project.description}
                 </p>
               </a>
@@ -76,11 +76,11 @@ const contributions = [
                 class="group block"
               >
                 <div class="mb-1">
-                  <span class="text-[16px] text-[#CECDC3] group-hover:underline">
+                  <span class="text-[16px] text-[var(--color-foreground)] group-hover:underline">
                     {contribution.title}
                   </span>
                 </div>
-                <p class="text-[14px] text-[#575653] leading-relaxed max-w-[540px]">
+                <p class="text-[14px] text-[var(--color-faint)] leading-relaxed max-w-[540px]">
                   {contribution.description}
                 </p>
               </a>

@@ -18,10 +18,10 @@ const { title, authors, venue, year, link, abstract } = Astro.props;
         rel="noopener noreferrer"
         class="group block"
     >
-        <div class="text-[16px] text-[#CECDC3] group-hover:underline mb-1">
+        <div class="text-[16px] text-[var(--color-foreground)] group-hover:underline mb-1">
             {title}
         </div>
-        <div class="text-[13px] text-[#575653]">
+        <div class="text-[13px] text-[var(--color-faint)]">
             {authors.join(", ")}
             <span class="mx-1">·</span>
             <span class="italic">{venue}</span>
@@ -29,7 +29,7 @@ const { title, authors, venue, year, link, abstract } = Astro.props;
             <span>{year}</span>
         </div>
         {abstract && (
-            <p class="text-[14px] text-[#575653] mt-2 leading-relaxed max-w-[600px] italic opacity-80">
+            <p class="text-[14px] text-[var(--color-faint)] mt-2 leading-relaxed max-w-[600px] italic opacity-80">
                 {abstract}
             </p>
         )}

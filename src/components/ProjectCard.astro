@@ -31,26 +31,26 @@ const containerProps = link
 >
   <div class="flex-1 flex flex-col">
     <div class="flex justify-between items-start mb-2">
-      <h3 class="text-lg font-medium text-[#CECDC3]">
+      <h3 class="text-lg font-medium text-[var(--color-foreground)]">
         {title}
       </h3>
       {
         link && (
-          <span class="text-[#575653] ml-4">
+          <span class="text-[var(--color-faint)] ml-4">
             ↗
           </span>
         )
       }
     </div>
 
-    <p class="text-[#575653] mb-4 text-base leading-relaxed">
+    <p class="text-[var(--color-faint)] mb-4 text-base leading-relaxed">
       {description}
     </p>
 
     <div class="flex flex-wrap gap-2 mt-auto">
       {
         tech.map((t) => (
-          <span class="text-xs text-[#575653]">
+          <span class="text-xs text-[var(--color-faint)]">
             {t}
           </span>
         ))
