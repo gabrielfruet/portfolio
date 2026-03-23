@@ -83,4 +83,19 @@
     .prose :not(pre)>code::after {
         content: "" !important;
     }
+
+    /* Styled blockquotes as callouts */
+    .prose blockquote {
+        border-left: 2px solid #6e6a67;
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        color: #8a857c;
+        font-style: normal;
+        background: transparent;
+    }
+
+    .prose blockquote p {
+        margin: 0.5em 0;
+    }
 }
