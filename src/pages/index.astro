@@ -12,23 +12,23 @@ const posts = (await getCollection("blog"))
   <Header />
 
   <main>
-    <h1 class="text-[2rem] md:text-[2.25rem] mb-10 text-[#e8e4dc] tracking-tight">
+    <h1 class="text-[2rem] md:text-[2.25rem] mb-10 text-[#ebdbb2] tracking-tight">
       Hi, I'm Gabriel.
     </h1>
 
-    <div class="mb-16 text-[#8a857c]">
+    <div class="mb-16 text-[#a89984]">
       <p class="text-[16px] leading-relaxed mb-4">
         I am a Computer Vision Engineer working on LiDAR perception and
         autonomous systems. I write about machine learning, computer vision,
         and the intersection of research and engineering.
       </p>
       <p class="text-[16px] leading-relaxed">
-      I contribute to <a href="https://github.com/pytorch/ignite" target="_blank" rel="noopener noreferrer" class="text-[#c4a77d] hover:underline">PyTorch Ignite</a>, <a href="https://github.com/lightly-ai/lightly-train" target="_blank" rel="noopener noreferrer" class="text-[#c4a77d] hover:underline">LightlyTrain</a> and <a href="https://github.com/lightly-ai/lightly" target="_blank" rel="noopener noreferrer" class="text-[#c4a77d] hover:underline">LightlySSL</a>.
+      I contribute to <a href="https://github.com/pytorch/ignite" target="_blank" rel="noopener noreferrer" class="text-[#83a598] hover:underline">PyTorch Ignite</a>, <a href="https://github.com/lightly-ai/lightly-train" target="_blank" rel="noopener noreferrer" class="text-[#83a598] hover:underline">LightlyTrain</a> and <a href="https://github.com/lightly-ai/lightly" target="_blank" rel="noopener noreferrer" class="text-[#83a598] hover:underline">LightlySSL</a>.
       </p>
     </div>
 
-    <div class="mt-20 pt-12 border-t border-[#2a2722]">
-      <p class="text-[15px] text-[#6e6a67] mb-4">Writing</p>
+    <div class="mt-20 pt-12 border-t border-[#3c3836]">
+      <p class="text-[15px] text-[#928374] mb-4">Writing</p>
       <ul class="space-y-0">
         {
           posts.map((post) => (
@@ -37,13 +37,13 @@ const posts = (await getCollection("blog"))
                 href={`${import.meta.env.BASE_URL}/blog/${post.slug}`}
                 class="group inline-flex items-baseline gap-3 hover:opacity-70 transition-opacity duration-150"
               >
-                <span class="text-[13px] text-[#6e6a67] tabular-nums shrink-0">
+                <span class="text-[13px] text-[#928374] tabular-nums shrink-0">
                   {post.data.pubDate.toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
                   })}
                 </span>
-                <span class="text-[15px] text-[#e8e4dc] group-hover:underline">
+                <span class="text-[15px] text-[#ebdbb2] group-hover:underline">
                   {post.data.title}
                 </span>
               </a>
@@ -53,7 +53,7 @@ const posts = (await getCollection("blog"))
       </ul>
       <a
         href={`${import.meta.env.BASE_URL}/blog`}
-        class="mt-6 inline-block text-[14px] text-[#e8e4dc] hover:underline"
+        class="mt-6 inline-block text-[14px] text-[#ebdbb2] hover:underline"
       >
         All posts →
       </a>
