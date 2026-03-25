@@ -55,7 +55,10 @@
 
     .prose pre {
         background-color: var(--tw-prose-pre-bg) !important;
-        padding: 1rem !important;
+        padding: 1.25rem 1.5rem !important;
+        border: 1px solid var(--color-divider);
+        border-radius: 0.375rem;
+        overflow-x: auto;
     }
 
     .prose pre code {
