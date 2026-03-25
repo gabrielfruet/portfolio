@@ -5,4 +5,13 @@ pubDate: "2026-03-25"
 tags: ["pytorch", "deep-learning", "uv"]
 ---
 
+You finally get your model training to work on your local machine, only to push
+it to the GPU cluster and watch it immediately crash with a 
+
+```
+RuntimeError: CUDA error: no kernel image is available for execution.
+``` 
+
+Your local machine is on CUDA 12.1; the server is stuck on 11.8. Now you're
+staring at a pip install command that feels like a game of Russian Roulette.
 

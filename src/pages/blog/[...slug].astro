@@ -26,11 +26,11 @@ const { Content } = await post.render();
 
   <main>
     <article>
-      <header class="mb-10">
-        <h1 class="text-xl md:text-2xl font-medium text-foreground mb-4 leading-tight">
+      <header class="mb-4">
+        <h1 class="text-xl md:text-2xl font-medium text-foreground mb-2 leading-tight">
           {post.data.title}
         </h1>
-        <div class="flex items-center gap-4 text-base text-foreground font-mono">
+        <div class="flex items-center gap-4 text-sm text-foreground/60 font-mono">
           <time datetime={post.data.pubDate.toISOString()}>
             {
               post.data.pubDate.toLocaleDateString("en-US", {
