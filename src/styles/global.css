@@ -83,6 +83,7 @@
         color: #CECDC3;
         font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", monospace;
         font-size: 0.875rem;
+        font-weight: 400 !important;
     }
 
     .prose :not(pre)>code::before,
