@@ -76,14 +76,13 @@
     }
 
     .prose :not(pre)>code {
-        background-color: var(--color-divider);
-        padding: 0.125rem 0.375rem;
+        background-color: color-mix(in srgb, var(--color-divider) 50%, transparent);
+        padding: 0.1rem 0.35rem;
         border-radius: 0.25rem;
-        border: 1px solid var(--color-faint);
-        color: #CECDC3;
+        border: none;
         font-family: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono", monospace;
-        font-size: 0.875rem;
         font-weight: 400 !important;
+        color: inherit;
     }
 
     .prose :not(pre)>code::before,

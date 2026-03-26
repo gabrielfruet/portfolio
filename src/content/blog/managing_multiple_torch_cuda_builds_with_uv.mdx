@@ -5,13 +5,132 @@ pubDate: "2026-03-25"
 tags: ["pytorch", "deep-learning", "uv"]
 ---
 
+import Figure from '../../components/Figure.astro';
+
 # Dependency hell problem
 
 You finally get your model training to work on your local machine, only to push
 it to the GPU cluster and watch it immediately crash with a 
 
-`RuntimeError: CUDA error: no kernel image is available for execution.`
+```RuntimeError: CUDA error: no kernel image is available for execution.```
 
 Your local machine is on CUDA 12.8; the server is stuck on 11.8. Now you're
 staring at a `pip install` and `requirements.txt` that feels like a
 game of Russian Roulette.
+
+# Astral uv as a solution
+
+<Figure
+     src="https://astral.sh/static/OpenGraph/UV.png"
+     alt="UV Package Manager Logo"
+     caption="The blazingly fast UV package manager"
+     className="w-1/2 mx-auto"
+   />
+
+[astral-uv](https://docs.astral.sh/uv/) is an extremely fast Python package and
+project manager written in Rust. It is the industry standard on the last few
+years for managing Python projects. It just works.
+
+## Managing torch with uv
+
+Besides the qualities of astral-uv, handling multiple PyTorch CUDA builds in a
+single project is non-trivial and not well documented, even in uv.
+
+After joining some sources, experimenting by myself, testing with multiple
+docker containers, multiple GPUs (GTX 1080 TI, RTX 3060...) and multiple ccs
+(cc 6.1 and cc 8.6) i finally found a solution.
+
+## 1. Setup your uv project.
+
+If you have already a working uv project, you can skip this step.
+If not, you can simply start a basic project by running 
+
+```bash
+uv init
+```
+
+It will initialize git, venv, project structure and pyproject.toml for you.
+
+## 2. Which torch version do you need?
+
+You'll need to gather what CUDA versions you need to support. You can check the
+CUDA version of your local machine by running
+
+```bash
+nvcc --version
+```
+
+A great resource is torch [compatibility
+matrix](https://pytorch.org/get-started/previous-versions/). So, gather the
+CUDA versions you need to support and the corresponding torch versions.
+
+## 3. Structure your dependencies
+
+We will use a concept of an extra. Here's an [Stack Overflow
+dicussion](https://stackoverflow.com/questions/52474931/what-is-extra-in-pypi-dependency) about Python's extras.
+
+In your `pyproject.toml`, you can define extras for each CUDA version. We'll
+walk through an example that supports CUDA 12.6 and CUDA 11.8
+
+These are our extras and their dependencies, we can add then using the `[project.optional-dependencies]` section in `pyproject.toml`:
+
+Another way of adding is by using the `uv add` command with the `--optional` flag, either way works.
+
+```toml
+[project.optional-dependencies]
+cu126 = ["torch==2.7.1", "torchvision==0.22.1", "torchaudio==2.7.1"]
+cu118 = ["torch==2.7.1", "torchvision==0.22.1", "torchaudio==2.7.1"]
+```
+
+Since these two extras are incompatible (although using the same package
+version, CUDA version is different), we will need to declare them as conflicting:
+
+```toml
+[tool.uv]
+conflicts = [[{ extra = "cu126" }, { extra = "cu118" }]]
+```
+
+After that, we will need to define the indexes for our packages to look into.
+
+```toml
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+```
+
+Finally, we will need to define to what index each package from each extra
+will look into to be installed.
+
+```toml
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu126", extra = "cu126" },
+  { index = "pytorch-cu118", extra = "cu118" },
+]
+torchvision = [
+  { index = "pytorch-cu126", extra = "cu126" },
+  { index = "pytorch-cu118", extra = "cu118" },
+]
+torchaudio = [
+  { index = "pytorch-cu126", extra = "cu126" },
+  { index = "pytorch-cu118", extra = "cu118" },
+]
+```
+
+## 4. Installing on a new environment
+
+After setting up your project management with uv, you can simply do
+
+```bash
+uv sync --extra cu126
+# or
+uv sync --extra cu118
+```
+
+You're done! Everything is working perfectly now on your environment.
