@@ -10,13 +10,15 @@ import Figure from '../../components/Figure.astro';
 # Dependency hell problem
 
 You finally get your model training to work on your local machine, only to push
-it to the GPU cluster and watch it immediately crash with a 
+it to the GPU cluster and watch it immediately crash with a
 
-```RuntimeError: CUDA error: no kernel image is available for execution.```
+```
+RuntimeError: CUDA error: no kernel image is available for execution.
+```
 
 Your local machine is on CUDA 12.8; the server is stuck on 11.8. Now you're
-staring at a `pip install` and `requirements.txt` that feels like a
-game of Russian Roulette.
+staring at a `pip install` and `requirements.txt` that feels like a game of
+Russian Roulette.
 
 # Astral uv as a solution
 
@@ -27,54 +29,57 @@ game of Russian Roulette.
      className="w-1/2 mx-auto"
    />
 
-[astral-uv](https://docs.astral.sh/uv/) is an extremely fast Python package and
-project manager written in Rust. It is the industry standard on the last few
-years for managing Python projects. It just works.
+[Astral uv](https://docs.astral.sh/uv/) is an extremely fast Python package and
+project manager written in Rust. It has become the industry standard over the
+last few years for managing Python projects. It just works.
 
 ## Managing torch with uv
 
-Besides the qualities of astral-uv, handling multiple PyTorch CUDA builds in a
-single project is non-trivial and not well documented, even in uv.
+Beyond uv's general benefits, handling multiple PyTorch CUDA builds in a
+single project is non-trivial and not well documented.
 
-After joining some sources, experimenting by myself, testing with multiple
-docker containers, multiple GPUs (GTX 1080 TI, RTX 3060...) and multiple ccs
-(cc 6.1 and cc 8.6) i finally found a solution.
+After piecing together several sources, experimenting on my own, testing with
+multiple Docker containers, multiple GPUs (GTX 1080 Ti, RTX 3060...), and
+multiple compute capabilities (CC 6.1 and CC 8.6), I finally found a solution.
 
-## 1. Setup your uv project.
+## 1. Set up your uv project
 
-If you have already a working uv project, you can skip this step.
-If not, you can simply start a basic project by running 
+If you already have a working uv project, you can skip this step.
+Otherwise, you can start a basic project by running
 
 ```bash
 uv init
 ```
 
-It will initialize git, venv, project structure and pyproject.toml for you.
+This will initialize git, a venv, project structure, and `pyproject.toml` for you.
 
 ## 2. Which torch version do you need?
 
-You'll need to gather what CUDA versions you need to support. You can check the
-CUDA version of your local machine by running
+You'll need to determine which CUDA versions you need to support. You can check
+the CUDA version of your local machine by running
 
 ```bash
 nvcc --version
 ```
 
-A great resource is torch [compatibility
-matrix](https://pytorch.org/get-started/previous-versions/). So, gather the
-CUDA versions you need to support and the corresponding torch versions.
+A great resource is the PyTorch [compatibility
+matrix](https://pytorch.org/get-started/previous-versions/). Gather the CUDA
+versions you need to support and the corresponding torch versions.
 
 ## 3. Structure your dependencies
 
-We will use a concept of an extra. Here's an [Stack Overflow
-dicussion](https://stackoverflow.com/questions/52474931/what-is-extra-in-pypi-dependency) about Python's extras.
+We will use the concept of an extra. Here's a [Stack Overflow
+discussion](https://stackoverflow.com/questions/52474931/what-is-extra-in-pypi-dependency)
+about Python's extras.
 
 In your `pyproject.toml`, you can define extras for each CUDA version. We'll
-walk through an example that supports CUDA 12.6 and CUDA 11.8
+walk through an example that supports CUDA 12.6 and CUDA 11.8.
 
-These are our extras and their dependencies, we can add then using the `[project.optional-dependencies]` section in `pyproject.toml`:
+These are our extras and their dependencies. You can add them using the
+`[project.optional-dependencies]` section in `pyproject.toml`:
 
-Another way of adding is by using the `uv add` command with the `--optional` flag, either way works.
+Another way of adding them is by using the `uv add` command with the
+`--optional` flag. Either way works.
 
 ```toml
 [project.optional-dependencies]
@@ -82,15 +87,15 @@ cu126 = ["torch==2.7.1", "torchvision==0.22.1", "torchaudio==2.7.1"]
 cu118 = ["torch==2.7.1", "torchvision==0.22.1", "torchaudio==2.7.1"]
 ```
 
-Since these two extras are incompatible (although using the same package
-version, CUDA version is different), we will need to declare them as conflicting:
+Since these two extras are incompatible (although they use the same package
+version, the CUDA version is different), we need to declare them as conflicting:
 
 ```toml
 [tool.uv]
 conflicts = [[{ extra = "cu126" }, { extra = "cu118" }]]
 ```
 
-After that, we will need to define the indexes for our packages to look into.
+After that, we need to define the indexes for our packages.
 
 ```toml
 [[tool.uv.index]]
@@ -104,8 +109,8 @@ url = "https://download.pytorch.org/whl/cu118"
 explicit = true
 ```
 
-Finally, we will need to define to what index each package from each extra
-will look into to be installed.
+Finally, we need to map each package to the correct index based on which extra
+is being installed.
 
 ```toml
 [tool.uv.sources]
@@ -123,9 +128,9 @@ torchaudio = [
 ]
 ```
 
-## 4. Installing on a new environment
+## 4. Install in a new environment
 
-After setting up your project management with uv, you can simply do
+After setting up your project, you can simply run
 
 ```bash
 uv sync --extra cu126
@@ -133,4 +138,29 @@ uv sync --extra cu126
 uv sync --extra cu118
 ```
 
-You're done! Everything is working perfectly now on your environment.
+### Verifying the installation
+
+To confirm everything is working correctly, you can run a quick check:
+
+```python
+import torch
+
+print(f"CUDA available: {torch.cuda.is_available()}")
+print(f"CUDA version: {torch.version.cuda}")
+print(f"GPU count: {torch.cuda.device_count()}")
+```
+
+If CUDA is available, you should see the correct version for your build
+(e.g., `12.6` for `cu126` or `11.8` for `cu118`).
+
+You're done! Everything should work perfectly in your environment.
+
+## Try it yourself
+
+The full working example with Docker containers, tests, and reproducible
+environments is available on GitHub:
+
+👉 [github.com/gabrielfruet/uv-torch-cuda](https://github.com/gabrielfruet/uv-torch-cuda)
+
+The repo includes Dockerfiles for both CUDA 11.8 and 12.6, along with tests
+to verify GPU tensor operations work correctly on different architectures.
